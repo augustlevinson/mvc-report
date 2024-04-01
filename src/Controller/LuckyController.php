@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class LuckyController
 {
     #[Route('/lucky/hi')]
+    public $stringy = "strängen hej hej";
     public function hi(): Response
     {
         $number = random_int(0, 9);
@@ -34,7 +35,6 @@ class LuckyController
             "The most common way people give up their power is by thinking they don’t have any. - Alice Walker",
             "The question isn’t who is going to let me; it’s who is going to stop me. - Ayn Rand"
         ];
-
 
         $data = [
             'quote' => $quotes[$number],

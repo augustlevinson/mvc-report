@@ -1,6 +1,11 @@
 .lucky-body {
-    background: rgb(255,0,200);
-    background: linear-gradient(118deg, rgba(255,0,200,1) 0%, rgba(107,255,63,1) 44%, rgba(255,143,0,1) 78%);
+    background: rgb(255, 0, 200);
+    background: linear-gradient(
+        118deg,
+        rgba(255, 0, 200, 1) 0%,
+        rgba(107, 255, 63, 1) 44%,
+        rgba(255, 143, 0, 1) 78%
+    );
 }
 
 .lucky-header {
@@ -12,23 +17,36 @@
 }
 
 .lucky-title {
-    font-size: 6em;
+    font-size: 10em;
     font-weight: 900;
-    color: #ff0000;
+    background: -webkit-linear-gradient(#ff0000, #ffff00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin: auto;
     text-align: center;
     border-bottom: none;
 }
 
 .lucky-nav {
-    background: rgb(11,0,78);
-    background: linear-gradient(118deg, rgba(11,0,78,1) 0%, rgba(10,45,0,1) 44%, rgba(71,40,0,1) 78%);
+    background: rgb(11, 0, 78);
+    background: linear-gradient(
+        118deg,
+        rgba(11, 0, 78, 1) 0%,
+        rgba(10, 45, 0, 1) 44%,
+        rgba(71, 40, 0, 1) 78%
+    );
 }
 
 .lucky-text {
     color: rgb(247, 0, 255);
-    background: rgb(11,0,78);
-    background: linear-gradient(118deg, rgba(11,0,78,1) 0%, rgba(10,45,0,1) 44%, rgba(71,40,0,1) 78%);
+    background: rgb(11, 0, 78);
+    background: linear-gradient(
+        118deg,
+        rgba(11, 0, 78, 1) 0%,
+        rgba(10, 45, 0, 1) 44%,
+        rgba(71, 40, 0, 1) 78%
+    );
 }
 
 .lucky-number {
@@ -36,6 +54,11 @@
     font-size: 5em;
     padding: 0.5em;
     color: #fff;
-    background: rgb(11,0,78);
-    background: linear-gradient(118deg, rgba(11,0,78,1) 0%, rgba(10,45,0,1) 44%, rgba(71,40,0,1) 78%);
+    background: rgb(11, 0, 78);
+    background: linear-gradient(
+        118deg,
+        rgba(11, 0, 78, 1) 0%,
+        rgba(10, 45, 0, 1) 44%,
+        rgba(71, 40, 0, 1) 78%
+    );
 }
