@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+<div class="main">
+    <h1>About MVC</h1>
+    <div class="two-col">
+        <p>
+            This website was built as part of <a href="https://dbwebb.se/kurser/mvc-v2">MVC</a>, a course at Blekinge Institute of Technology. The focus of the course is object oriented programming in PHP and web based framework <a href="https://symfony.com/">Symfony</a>. The course has a <a href="https://github.com/dbwebb-se/mvc">GitHub repository</a> if you want to have a closer look at it. This website also has a <a href"">public repo</a> on GitHub.
+        </p>
+        <p>
+            MVC stands for Model, View and Controller and is a software architectural pattern commonly used in web development to structure the codebase of web applications. It separates an application into three interconnected components.
+        </p>
+    </div>
+    <img src="{{ asset('img/mvc-chart.png') }}" class="diagram" alt="">
+</div>
+{% endblock %}

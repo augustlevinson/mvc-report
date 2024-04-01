@@ -1,0 +1,38 @@
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="{{ asset('img/mvc.png') }}">
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body class="lucky-body">
+        <header class="lucky-header" style="background-image: url({{ asset('img/numbers.jpg') }})">
+            <h1 class="lucky-title">Lucky!</h1>
+        </header>
+        <nav class="lucky-nav">
+            <ul>
+                <li><a href="{{ path('home') }}">Home</a></li>
+                <li><a href="{{ path('about') }}">About</a></li>
+                <li><a href="{{ path('report') }}">Report</a></li>
+                <li><a href="{{ path('lucky') }}">Lucky</a></li>
+                <li><a href="{{ path('api') }}">API</a></li>
+            </ul>
+        </nav>
+{% block body %}
+<div class="main">
+    <h1 class="lucky-text">Lucky number</h1>
+    <div class="two-col">
+        <div class="p-wrapper">
+            <p class="lucky-text">Welcome to my awesome magical homepage.</p>
+            <p>This is the current magic number: <span class="lucky-number">{{ number }}</span></p>
+        </div>
+        <img src="{{ asset('img/roulette.png') }}" alt="">
+    </div>
+</div>
+{% endblock %}
