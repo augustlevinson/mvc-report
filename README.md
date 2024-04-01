@@ -4,4 +4,12 @@
 Report
 ===
 
+
 Report site for the <a href="https://dbwebb.se/kurser/mvc-v2/">mvc course</a> at Blekinge Institute of Technology.
+
+Clone the Repository
+---
+To clone this repository to your local machine, navigate to the disired folder in your terminal and execute the following command:
+
+```bash
+git clone https://github.com/augustlevinson/mvc-report.git
