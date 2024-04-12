@@ -139,3 +139,109 @@ footer p {
     color: var(--background-white);
     font-size: 1em;
 }
+
+footer a {
+    text-align: center;
+    margin: auto;
+    color: var(--main-light);
+    font-size: 1em;
+}
+
+input {
+    font-size: 1em;
+}
+
+.die {
+    font-size: 2em;
+}
+
+ul li {
+    list-style: none;
+}
+
+.flash-notice {
+    padding: 1em;
+    font-family: "Hanken Grotesk", Helvetica, sans-serif;
+    font-size: 1em;
+    color: #fff;
+    background-color: var(--main-bright);
+    border-color: var(--main-dark);
+    border-radius: 8px;
+}
+.flash-notice:before {
+    content: "ⓘ";
+}
+
+.flash-warning {
+    padding: 1em;
+    font-family: "Hanken Grotesk", Helvetica, sans-serif;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #ff7a7a;
+    border-color: #ac2d2d;
+    border-radius: 8px;
+}
+.flash-warning:before {
+    content: "⚠";
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    column-gap: 1em;
+    row-gap: 4em;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-graphic {
+    font-size: 20rem;
+    text-align: center;
+    line-height: 1;
+    color: var(--main-bright);
+}
+
+.card-str {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: auto;
+    text-align: center;
+    line-height: 1;
+}
+
+.Spades,
+.Clubs {
+    color: var(--paragraph-dark);
+}
+
+.Hearts .card-str,
+.Hearts .card-graphic,
+.Diamonds .card-str,
+.Diamonds .card-graphic {
+    color: var(--main-bright);
+}
+
+.Spades .card-str,
+.Spades .card-graphic,
+.Clubs .card-str,
+.Clubs .card-graphic {
+    color: var(--main-dark);
+}
+
+.Joker .card-str,
+.Joker .card-graphic {
+    color: var(--main-light);
+}
+
+.button {
+    width: fit-content;
+    margin: auto;
+    background-color: var(--main-bright);
+    color: #fff;
+    font-weight: 800;
+    padding: 0.75em 1.25em;
+    border-radius: 8px;
+}

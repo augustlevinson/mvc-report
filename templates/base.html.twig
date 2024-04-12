@@ -25,11 +25,14 @@
                 <li><a href="{{ path('report') }}">Report</a></li>
                 <li><a href="{{ path('lucky') }}">Lucky</a></li>
                 <li><a href="{{ path('api') }}">API</a></li>
+                <li><a href="{{ path('card') }}">Card</a></li>
+                <li><a href="{{ path('session') }}">Session</a></li>
             </ul>
         </nav>
         {% block body %}
         {% endblock %}
         <footer>
+            <a href="{{ path('session') }}">Session</a>
             <p>&copy; 2024 August Levinson</p>
         </footer>
     </body>

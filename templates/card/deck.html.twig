@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card Deck{% endblock %}
+
+{% block body %}
+<div class="main">
+<h1>Card Deck ({{ cardDeck.getRemainingCards() }} cards)</h1>
+
+{% if cardDeck.getRemainingCards() >= 1 %}
+<div class="card-grid">
+{% for card in cardDeck.getAllCards() %}
+    <div class="card {{ card.getSuit() }}">
+        <div class="card-graphic">{{ card.getGraphic() }}</div>
+        <p class="card-str">{{ card.__toString() }}</p>
+    </div>
+{% endfor %}
+</div>
+    {% else %}
+        <a class="button" href="/game/card/deck/generate">Generate new deck</a>
+{% endif %}
+
+{{ include('flash.html.twig') }}
+
+</div>
+{% endblock %}

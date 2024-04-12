@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class LuckyControllerTwig extends AbstractController
 {
@@ -43,4 +44,17 @@ class LuckyControllerTwig extends AbstractController
     {
         return $this->render('api.html.twig');
     }
+
+    #[Route("/game/pig", name: "pig_start")]
+    public function pigHome(): Response
+    {
+        return $this->render('pig/home.html.twig');
+    }
+
+    #[Route("/game/card", name: "card")]
+    public function cardHome(): Response
+    {
+        return $this->render('card/home.html.twig');
+    }
+
 }

@@ -50,5 +50,5 @@ class LuckyController
         );
         return $response;
     }
-}
 
+}
