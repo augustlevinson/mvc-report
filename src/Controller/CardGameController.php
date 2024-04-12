@@ -68,7 +68,7 @@ class CardGameController extends AbstractController
             $session->set("deck", $deck);
         }
 
-        $drawnCard = $deck->drawNumber(5);
+        $drawnCard = $deck->drawNumber(1);
         $session->set("last_drawn", $drawnCard);
 
         if ($drawnCard == null) {

@@ -10,6 +10,6 @@
                 Data in session:
             </p>
             {{ dump(session) }}
-            <a href="/session/delete">Clear session</a>
+            <a href="{{ path('session_clear') }}">Clear session</a>
 </div>
 {% endblock %}

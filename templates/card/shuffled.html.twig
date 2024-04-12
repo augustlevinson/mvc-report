@@ -16,7 +16,7 @@
 {% endfor %}
 </div>
     {% else %}
-        <a class="button" href="/game/card/deck/generate">Generate new deck</a>
+        <a class="button" href="{{ path('generate_deck') }}">Generate new deck</a>
 {% endif %}
 
 {{ include('flash.html.twig') }}
