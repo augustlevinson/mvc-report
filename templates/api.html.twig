@@ -6,12 +6,38 @@
 <div class="main">
     <h1>APIs</h1>
     <div class="api-grid">
-        <a href="api/quote">
         <div class="api-container">
-            <h2>quote</h2>
-            <p>Get a random quote</p>
-        </div>
+        <a href="api/quote">
+            <h2>/quote</h2>
         </a>
+            <p>Returns a random quote.</p>
+        </div>
+        <div class="api-container">
+        <a href="api/deck">
+            <h2>/deck</h2>
+        </a>
+            <p>Returns a sorted deck of cards as a JSON object.</p>
+        </div>
+        <div class="api-container">
+        <a href="api/quote">
+            <form class="api-link" action="{{path('')}}" method="POST">
+        <input class="button-text" type="submit" value="api/deck/shuffle">
+        </form>
+        </a>
+            <p>Returns a shuffled deck of cards as a JSON object.</p>
+        </div>
+        <div class="api-container">
+        <a href="api/quote">
+            <h2>/deck/draw</h2>
+        </a>
+            <p>Draws a card from deck, returns the card and the count of remaining cards.</p>
+        </div>
+        <div class="api-container">
+        <a href="api/quote">
+            <h2>/deck/draw/:number</h2>
+        </a>
+            <p>Draws given number of cards from deck, returns them and the count of remaining cards.</p>
+        </div>
     </div>
 </div>
 {% endblock %}

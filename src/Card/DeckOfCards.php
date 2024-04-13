@@ -23,6 +23,15 @@ class DeckOfCards
         return $this->cards;
     }
 
+    public function getAllCardsArray()
+    {
+        $cards = [];
+        foreach ($this->cards as $card) {
+            $cards[] = $card->toArray();
+        }
+        return $cards;
+    }
+
     public function shuffleCards()
     {
         shuffle($this->cards);

@@ -52,4 +52,13 @@ class Card
         }
         return $this->value . ' of ' . $this->suit;
     }
+
+    public function toArray()
+    {
+        return [
+            'suit' => $this->suit,
+            'value' => $this->value,
+            'graphic' => $this->graphic
+        ];
+    }
 }

@@ -83,7 +83,7 @@ nav li a:hover {
 
 .two-col {
     display: grid;
-    width: 90%;
+    width: 100%;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 3em;
 }
@@ -249,17 +249,10 @@ ul li {
 
 .api-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    column-gap: 1em;
-    row-gap: 4em;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 3em;
 }
 
-.api-container {
-    padding: 1em;
-    border: solid 4px var(--main-bright);
-    border-radius: 10px;
-}
-
-.api-container h2,
 .api-container p {
+    color: var(--main-bright);
 }
