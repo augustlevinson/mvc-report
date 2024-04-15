@@ -247,6 +247,42 @@ ul li {
     border-radius: 8px;
 }
 
+.submit-contatiner {
+    display: flex;
+    width: 100%;
+    margin: auto;
+}
+
+.api-submit {
+    width: fit-content;
+    margin: auto;
+    background-color: var(--main-bright);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+    padding: 0.75em 1.25em;
+    border-radius: 8px;
+    border: none;
+}
+
+input[type=number] {
+    max-width: 2em;
+    margin: auto;
+    margin-right: 1em;
+    background-color: transparent;
+    font-size: 1.4em;
+    color: var(--main-bright);
+    font-weight: 800;
+    border: none;
+}
+
+.form-h2 {
+    display: inline;
+    margin: auto;
+    width: fit-content;
+    font-size: 1.4em;
+}
+
 .api-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -254,5 +290,9 @@ ul li {
 }
 
 .api-container p {
+    color: var(--main-bright);
+}
+
+.api-link {
     color: var(--main-bright);
 }

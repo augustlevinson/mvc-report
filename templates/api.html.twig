@@ -19,23 +19,33 @@
             <p>Returns a sorted deck of cards as a JSON object.</p>
         </div>
         <div class="api-container">
-        <a href="api/quote">
-            <form class="api-link" action="{{path('')}}" method="POST">
-        <input class="button-text" type="submit" value="api/deck/shuffle">
-        </form>
-        </a>
+            <form id="shuffleForm" class="api-link" action="{{ path('deck_shuffle') }}" method="POST">
+                <a href="#" onclick="document.getElementById('shuffleForm').submit();"><h2>/deck/shuffle</h2></a>
+            </form>
             <p>Returns a shuffled deck of cards as a JSON object.</p>
         </div>
         <div class="api-container">
-        <a href="api/quote">
-            <h2>/deck/draw</h2>
-        </a>
+            <form id="drawForm" class="api-link" action="{{ path('deck_draw') }}" method="POST">
+                <a href="#" onclick="document.getElementById('drawForm').submit();"><h2>/deck/draw
+                </h2></a>
+            </form>
             <p>Draws a card from deck, returns the card and the count of remaining cards.</p>
         </div>
         <div class="api-container">
-        <a href="api/quote">
-            <h2>/deck/draw/:number</h2>
-        </a>
+            <form id="drawNumberForm" class="api-link" action="{{ path('deck_draw_number', {'num': 4}) }}" method="POST" onsubmit="updateAction(this)">
+                <h2 class="api-link">/deck/draw/:number</h2>
+                <div class="submit-container">
+                    <h2 class="form-h2">/deck/draw/</h2>
+                    <input type="number" id="numInput" name="num" min="1" value="4">
+                    <input class="api-submit" type="submit" value="Submit">
+                </div>
+            </form>
+        <script>
+    function updateAction(form) {
+        var num = document.getElementById('numInput').value;
+        form.action = "/api/deck/draw/" + num;
+    }
+        </script>
             <p>Draws given number of cards from deck, returns them and the count of remaining cards.</p>
         </div>
     </div>
