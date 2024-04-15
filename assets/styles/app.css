@@ -68,6 +68,15 @@ nav li a:hover {
     min-height: 500px;
 }
 
+img {
+    border: solid var(--main-bright) 2px;
+}
+
+.stand-alone {
+    margin-top: 2em;
+    width: 60%;
+}
+
 .presentation {
     display: grid;
     width: 100%;
@@ -91,6 +100,7 @@ nav li a:hover {
 .diagram {
     margin: 3em auto;
     width: 70%;
+    border: none;
 }
 
 h1,
@@ -273,7 +283,8 @@ input[type=number] {
     font-size: 1.4em;
     color: var(--main-bright);
     font-weight: 800;
-    border: none;
+    border: 1px solid var(--main-bright);
+    border-radius: 8px;
 }
 
 .form-h2 {
@@ -295,4 +306,29 @@ input[type=number] {
 
 .api-link {
     color: var(--main-bright);
+}
+
+@media (max-width: 600px) {
+    
+    .site-title {
+        font-size: 3em;
+    }
+
+    .presentation {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .presentation img, .two-col img, .stand-alone {
+        width: 100%;
+    }
+
+    .two-col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .diagram {
+        width: 100%;
+    }
 }

@@ -32,7 +32,7 @@
             <p>Draws a card from deck, returns the card and the count of remaining cards.</p>
         </div>
         <div class="api-container">
-            <form id="drawNumberForm" class="api-link" action="{{ path('deck_draw_number', {'num': 4}) }}" method="POST" onsubmit="updateAction(this)">
+            <form id="drawNumberForm" class="api-link" action="{{ url('deck_draw_number', {'num': 0}) }}" method="POST" onsubmit="updateAction(this)">
                 <h2 class="api-link">/deck/draw/:number</h2>
                 <div class="submit-container">
                     <h2 class="form-h2">/deck/draw/</h2>
@@ -40,12 +40,12 @@
                     <input class="api-submit" type="submit" value="Submit">
                 </div>
             </form>
-        <script>
-    function updateAction(form) {
-        var num = document.getElementById('numInput').value;
-        form.action = "/api/deck/draw/" + num;
-    }
-        </script>
+            <script>
+            function updateAction(form) {
+                var num = document.getElementById('numInput').value;
+                form.action = form.action.replace('/0', '/' + num);
+            }
+            </script>
             <p>Draws given number of cards from deck, returns them and the count of remaining cards.</p>
         </div>
     </div>
