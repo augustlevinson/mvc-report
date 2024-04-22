@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game{% endblock %}
+
+{% block body %}
+<div class="main">
+<h1>Game</h1>
+{{ include('flash.html.twig') }}
+
+<form method="post" action="">
+    <p>
+        <input type="submit" name="hit" value="Hit" onClick="this.form.action='{{ path('game_hit') }}';">
+        <input type="submit" name="stand" value="Stand" onClick="this.form.action='{{ path('pig_save') }}';">
+        <input type="submit" name="restart" value="Restart" onClick="this.form.action='{{ path('pig_init_get') }}';this.form.method='get';">
+    </p>
+</form>
+</div>
+{% endblock %}

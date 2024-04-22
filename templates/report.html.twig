@@ -7,35 +7,35 @@
     <h1>Report</h1>
     <section id="kmom01">
         <a href="#kmom01"><h2>kmom01</h2></a>
-        <h3>
+        <h3 class="report-h3">
             Berätta kort om dina förkunskaper och tidigare erfarenheter kring objektorientering.
         </h3>
         <p>
             Första introduktionen till objektorientering fick jag i javascriptkursen. Där snuddades det dock bara vid i förbifarten. I den nyss avslutade kursen oopython jobbade vi desto mer objektorienterat. Där dök vi ner i några olika datastrukturer och det blev snabbt tydligt att objektorienterad programmering är kraftfullt. Inkapslingen av funktioner och variabler skyddar dem från obehörig och oönskad manipulation. Dessutom blir det enklare att uppnå kod som följer DRY-principen, då återkommande funktionalitet kan utgöra egna objekt som kan användas på flera ställen.
         </p>
-        <h3>
+        <h3 class="report-h3">
             Berätta kort om PHPs modell för klasser och objekt. Vilka är de grunder man behöver veta/förstå för att kunna komma igång och skapa sina första klasser?
         </h3>
         <p>
             En klass är som en mall som man kan skapa objekt utifrån. Klassen definieras med olika variabler och metoder som är specifika för objekt av just den klassen. När man skapar ett objekt av en viss klass kallas det att man instansierar ett objekt av klassen. Istället för att jobba med publika variabler och metoder jobbar man mot objekt genom ett så kallat API, där man anropar objektets metoder och variabler. Detta avgränsar hur olika användare och program får jobba mot objektets innehåll.
         </p>
-        <h3>
+        <h3 class="report-h3">
             Reflektera kort över den kodbas, koden, strukturen som användes till uppgiften me/report, hur uppfattar du den?
         </h3>
         <p>
             Jag tycker mappstrukturen känns väldigt stor för de projekt vi ska utföra, men samtidigt är det väl mer och mer så man bygger appar. Ju större app desto fler filer behövs och desto viktigare blir det med en bra struktur på dem. Så bra att vi vänjer oss vid det och skapar goda vanor. Ofta hjälper dessutom en pakethanterare som Composer eller NPM oss att sätta grunden för strukturen, så jättekrångligt är det nog inte ändå.
         </p>
-        <h3>
+        <h3 class="report-h3">
             Med tanke på artikeln “PHP The Right Way”, vilka delar in den finner du extra intressanta och värdefulla? Är det några särskilda områden som du känner att du vill veta mer om?
         </h3>
         <p>
             Jag prioriterade kapitel 4, Language Highlights. Där fick jag en snabb liten genomgång av språket och dess olika paradigmer, såsom objektorienterad och funktionell programmering och skillnaderna däremellan. Kapitlet länkar också en hel del till php.net för fördjupning om olika delar. Det känns som läsning som kan behöva återkommas till under kursen. Mer specifikt skulle jag gärna läsa på mer kring <a href="https://www.php.net/language.oop5">klasser och objekt</a>.
         </p>
-        <h3>TIL: Objekt och klasser fungerar hittills väldigt liknande i flera språk, även om syntaxen fungerar lite olika.</h3>
+        <h3 class="report-h3">TIL: Objekt och klasser fungerar hittills väldigt liknande i flera språk, även om syntaxen fungerar lite olika.</h3>
     </section>
     <section id="kmom02">
         <a href="#kmom02"><h2>kmom02</h2></a>
-        <h3>Förklara kort de objektorienterade konstruktionerna arv, komposition, interface och trait och hur de används i PHP.</h3>
+        <h3 class="report-h3">Förklara kort de objektorienterade konstruktionerna arv, komposition, interface och trait och hur de används i PHP.</h3>
         <p>
             <strong>Arv</strong> innebär att en klass ärver funktionalitet från en annan klass. Den ärvande klassen kallas subklass och klassen den ärver ifrån kallas basklass. Det är användbart när vi vill utöka funktionaliteten för en klass men inte göra den för stor och komplicerad. Ett exempel på arv i min implementation av veckans kursmoment är DeckOfCardsWithJoker som är en subklass till DeckOfCards. Den gör samma sak som basklassen, med det lilla tillägget att kortleken även innehåller jokrar när objektet konstrueras.
         </p>
@@ -48,7 +48,7 @@
         <p>
             <strong>Interface</strong> är ett annat sätt att dela funktionalitet mellan klasser, eller i alla fall försäkra sig om att det går. När en klass använder interface ger den ett löfte om att den går att använda på ett visst sätt. Man kan alltså förvänta sig att det som definieras i interfacet går att använda i klassen. En fördel med detta är att man kan jobba med klasser som man inte har så bra koll på (om man t ex inte skrivit dem själv, vilket inte är ovanligt), så länge man har koll på ett interface som klassen “lovar” att fungera enligt.
         </p>
-        <h3>Berätta om din implementation från uppgiften. Hur löste du uppgiften, är du nöjd/missnöjd, vilken förbättringspotential ser du i din kod och dina klasser?</h3>
+        <h3 class="report-h3">Berätta om din implementation från uppgiften. Hur löste du uppgiften, är du nöjd/missnöjd, vilken förbättringspotential ser du i din kod och dina klasser?</h3>
         <p>
             Jag valde att utgå från klassen deckOfCards i min implementation. När en kortlek (deckOfCards) konstrueras populeras den med kortobjekt (Card) i stigande ordning. Routen Deck instansierar kortleksklassen och visar upp alla kort.
         </p>
@@ -61,14 +61,14 @@
         <p>
             En potentiell förbättring hade varit att använda traits och interface. Det kanske får bli i kommande kursmoment?
         </p>
-        <h3>Vilka är dina reflektioner så här långt med att jobba i Symfony med applikationskod enligt MVC?</h3>
+        <h3 class="report-h3">Vilka är dina reflektioner så här långt med att jobba i Symfony med applikationskod enligt MVC?</h3>
         <p>
             Det är ganska smidigt dela upp koden enligt MVC. Det blir tydligt vilken kod som gör vad. Även om det går att blanda hanterandet av logik och villkor både i klasserna, controllern och twigfilen försöker jag fördela det på ett vettigt sätt (till exempel att elementet med flashmeddelandet alltid ligger med i HTML:en, eftersom det inte syns förrän ett flashmeddelande genereras i controllern).
         </p>
         <p>
             Jag börjar dessutom tycka det är riktigt trevligt att jobba med Twig. Syntaxen är enkel när man väl får kläm på den.
         </p>
-        <h3>Vilken är din TIL för detta kmom?</h3>
+        <h3 class="report-h3">Vilken är din TIL för detta kmom?</h3>
         <p>
             Återanvänd twigfiler! När man ska lägga till en undersida på sajten har man ofta redan en fil med liknande struktur som det man vill uppnå. Kopiera och modifiera, det går snabbast! Kanske en no-brainer, men ändå?
         </p>

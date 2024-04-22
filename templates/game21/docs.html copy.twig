@@ -1,0 +1,106 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game{% endblock %}
+
+{% block body %}
+<div class="main">
+<h1>Game 21 Documentation</h1>
+{{ include('flash.html.twig') }}
+
+<pre>
+    <code>
+Game start
+  Initialize DeckOfCards and Hand objects (playerHand and bankHand)
+  Shuffle DeckOfCards
+  Player draws 1 card from DeckOfCards
+  Display playerHand value
+
+FUNCTION hitOrStand()
+  Ask player to choose between hit or stand
+  IF playerChoice == hit THEN
+    playerHand draws 1 from DeckOfCards
+    Display playerHand value
+    IF playerHand > 21 THEN
+      Display "Player is bust. Bank wins"
+      End game
+    ELSE
+      Call hitOrStand()
+    ENDIF
+  ELSE IF playerChoice == stand THEN
+    WHILE bankHand < 21 DO
+      bankHand draws 1 from DeckOfCards
+    ENDWHILE
+    IF bankHand == 21 THEN
+      Display "Bank hits 21. Bank wins"
+      End game
+    ELSEIF bankHand > 21 THEN
+      Display "Bank is bust. Player wins"
+      End game
+    ELSE
+      IF bankHand < playerHand THEN
+        Display "Player's hand is closer to 21. Player wins"
+        End game
+      ELSE
+        Display "Bank's hand is closer to 21 or equal. Bank wins"
+        End game
+      ENDIF
+    ENDIF
+  ENDIF
+ENDFUNCTION
+
+Call hitOrStand()
+    </code>
+</pre>
+<p>
+    The objective of the game is to achieve a total card value of 21 or get as close as possible without exceeding this limit, using two or more cards. Aces can be worth either 1 or 14 points, kings are worth 13, queens 12, and jacks 11. Number cards hold the same value as their face value.
+</p>
+<img class="stand-alone no-border" src="{{ asset('img/cardgame-flowchart.svg') }}" alt="Flowchart" width="100%">
+
+<pre>
+    <code>
+Game start
+  Initialize DeckOfCards and Hand objects (playerHand and bankHand)
+  Shuffle DeckOfCards
+  Player draws 1 card from DeckOfCards
+  Display playerHand value
+
+FUNCTION hitOrStand()
+  Ask player to choose between hit or stand
+  IF playerChoice == hit THEN
+    playerHand draws 1 from DeckOfCards
+    Display playerHand value
+    IF playerHand > 21 THEN
+      Display "Player is bust. Bank wins"
+      End game
+    ELSE
+      Call hitOrStand()
+    ENDIF
+  ELSE IF playerChoice == stand THEN
+    WHILE bankHand < 21 DO
+      bankHand draws 1 from DeckOfCards
+    ENDWHILE
+    IF bankHand == 21 THEN
+      Display "Bank hits 21. Bank wins"
+      End game
+    ELSEIF bankHand > 21 THEN
+      Display "Bank is bust. Player wins"
+      End game
+    ELSE
+      IF bankHand < playerHand THEN
+        Display "Player's hand is closer to 21. Player wins"
+        End game
+      ELSE
+        Display "Bank's hand is closer to 21 or equal. Bank wins"
+        End game
+      ENDIF
+    ENDIF
+  ENDIF
+ENDFUNCTION
+
+Call hitOrStand()
+    </code>
+</pre>
+
+</div>
+
+{% endblock %}
