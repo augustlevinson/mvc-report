@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="main">
-<h1>Game</h1>
+
 {{ include('flash.html.twig') }}
 
 <form method="post" action="">
@@ -15,7 +15,7 @@
     </p>
 </form>
 
-    <h3>Player's score: {{ playerScore }}</h3>
+    <h3>Player: {{ playerScore }}</h3>
     <div class="card-grid">
     {% for card in playerHand.cards %}
     <div class="card {{ card.getSuit() }}">
@@ -27,7 +27,7 @@
 
     <hr>
 
-    <h3>Bank's score: {{ bankScore }}</h3>
+    <h3>Bank: {{ bankScore }}</h3>
     <div class="card-grid">
     {% for card in bankHand.cards %}
     <div class="card {{ card.getSuit() }}">

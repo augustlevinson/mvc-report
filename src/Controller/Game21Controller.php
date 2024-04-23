@@ -115,8 +115,15 @@ class Game21Controller extends AbstractController
         $bankHand = $session->get("bankHand");
 
         $bankScore = $game21->bankDraws($deck, $bankHand);
-        while ($bankScore[0] < 21 && $bankScore[1] < 21) {
-            $bankScore = $game21->bankDraws($deck, $bankHand);
+        if (count($bankScore) == 2) {
+            while ($bankScore[0] < 21 || $bankScore[1] < 21) {
+                $bankScore = $game21->bankDraws($deck, $bankHand);
+            }
+        }
+        else {
+            while ($bankScore[0] < 21) {
+                $bankScore = $game21->bankDraws($deck, $bankHand);
+            }
         }
 
         $data = [
