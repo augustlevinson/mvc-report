@@ -130,6 +130,7 @@ h2 {
 
 h3 {
     font-size: 2em;
+    color: var(--main-bright);
 }
 
 .report-h3 {
@@ -171,6 +172,11 @@ footer a {
     font-size: 1em;
 }
 
+
+hr {
+    border: 1px solid var(--main-bright);
+    margin: 2.5em 0;
+}
 input {
     font-size: 1em;
 }
@@ -222,7 +228,7 @@ ul li {
 }
 
 .card-graphic {
-    font-size: 20rem;
+    font-size: 16rem;
     text-align: center;
     line-height: 1;
     color: var(--main-bright);
@@ -289,6 +295,14 @@ ul li {
     border: none;
 }
 
+input[type=submit] {
+    background-color: var(--main-bright);
+    color: #fff;
+    border: solid 1px var(--main-dark);
+    border-radius: 8px;
+    padding: 0.5em;
+}
+
 input[type=number] {
     max-width: 2em;
     margin: auto;
@@ -341,6 +355,15 @@ code {
     color: var(--main-dark);
 }
 
+.scoreboard {
+    display: flex;
+    width: 100%;
+}
+
+.scoreboard h3 {
+    margin: auto;
+}
+
 
 @media (max-width: 600px) {
     
@@ -358,6 +381,11 @@ code {
     }
 
     .two-col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .scoreboard {
         display: flex;
         flex-direction: column;
     }

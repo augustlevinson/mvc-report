@@ -10,9 +10,37 @@
 <form method="post" action="">
     <p>
         <input type="submit" name="hit" value="Hit" onClick="this.form.action='{{ path('game_hit') }}';">
-        <input type="submit" name="stand" value="Stand" onClick="this.form.action='{{ path('pig_save') }}';">
-        <input type="submit" name="restart" value="Restart" onClick="this.form.action='{{ path('pig_init_get') }}';this.form.method='get';">
+        <input type="submit" name="stand" value="Stand" onClick="this.form.action='{{ path('game_stand') }}';">
+        <input type="submit" name="restart" value="Restart" onClick="this.form.action='{{ path('game_init') }}';this.form.method='get';">
     </p>
 </form>
+
+    <h3>Player's score: {{ playerScore }}</h3>
+    <div class="card-grid">
+    {% for card in playerHand.cards %}
+    <div class="card {{ card.getSuit() }}">
+        <div class="card-graphic">{{ card.getGraphic() }}</div>
+        <p class="card-str">{{ card.__toString() }}</p>
+    </div>
+    {% endfor %}
+    </div>
+
+    <hr>
+
+    <h3>Bank's score: {{ bankScore }}</h3>
+    <div class="card-grid">
+    {% for card in bankHand.cards %}
+    <div class="card {{ card.getSuit() }}">
+        <div class="card-graphic">{{ card.getGraphic() }}</div>
+        <p class="card-str">{{ card.__toString() }}</p>
+    </div>
+    {% endfor %}
+    </div>
+
+<p>
+    Data in session:
+</p>
+{{ dump(session) }}
+<a href="{{ path('session_clear') }}">Clear session</a>
 </div>
 {% endblock %}

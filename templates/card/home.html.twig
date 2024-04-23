@@ -7,9 +7,9 @@
 <h1>Card</h1>
 {{ include('flash.html.twig') }}
 
-<h3><a href="card/deck">Deck</a></h3>
-<h3><a href="card/deck/shuffle">Shuffle</a></h3>
-<h3><a href="card/deck/draw">Draw</a></h3>
+<h3><a href="{{ path('card_deck') }}">Deck</a></h3>
+<h3><a href="{{ path('shuffle_deck') }}">Shuffle</a></h3>
+<h3><a href="{{ path('draw_card') }}">Draw</a></h3>
 <p>
     <strong>The functionality for this part of the website</strong> is structured into classes Card, DeckOfCards, DeckOfCardsWithJokers. the Card class holds an individual playing card and DeckOfCards holds a complete deck of cards (each card being a Card object). DeckOfCardsWithJokers is a sub class of DeckOfCards, inheriting all variables and methods from that class. This extension adds the possibility to use a deck containing jokers.
 </p>
