@@ -26,7 +26,7 @@ class Game21Controller extends AbstractController
     #[Route("/game/init", name: "game_init")]
     public function gameInit(SessionInterface $session): Response
     {
-        // Initiate "deck21", hands for player and bank and "game21"
+        // Initiate "deck21", "game21" and bank and player hands.
         $game21 = new Game21();
         $session->set("game21", $game21);
         $deck = new DeckOfCards();
@@ -54,7 +54,7 @@ class Game21Controller extends AbstractController
     #[Route("/game/play", name: "game_play")]
     public function gamePlay(SessionInterface $session): Response
     {
-        // Check if "deck21" and "game21" exists in session, otherwise create them
+        // Get variables from session
         $game21 = $session->get("game21");
         $deck = $session->get("deck21");
         $playerHand = $session->get("playerHand");
@@ -116,12 +116,12 @@ class Game21Controller extends AbstractController
 
         $bankScore = $game21->bankDraws($deck, $bankHand);
         if (count($bankScore) == 2) {
-            while ($bankScore[0] < 21 || $bankScore[1] < 21) {
+            while ($bankScore[0] < 17 || $bankScore[1] < 17) {
                 $bankScore = $game21->bankDraws($deck, $bankHand);
             }
         }
         else {
-            while ($bankScore[0] < 21) {
+            while ($bankScore[0] < 17) {
                 $bankScore = $game21->bankDraws($deck, $bankHand);
             }
         }
@@ -134,6 +134,33 @@ class Game21Controller extends AbstractController
             'session' => $session->all()
         ];
 
-        return $this->redirectToRoute('game_play');
+        return $this->redirectToRoute('game_over');
+    }
+
+    #[Route("/game/gameover", name: "game_over")]
+    public function gameOver(SessionInterface $session): Response
+    {
+        // Get variables from session
+        $game21 = $session->get("game21");
+        $deck = $session->get("deck21");
+        $playerHand = $session->get("playerHand");
+        $bankHand = $session->get("bankHand");
+        $scoreBoard = $game21->getScoreBoard();
+
+        $playerScore = join(' or ', $scoreBoard['Player']);
+        $bankScore = join(' or ', $scoreBoard['Bank']);
+
+        $data = [
+            "cardDeck" => $deck,
+            "game21" => $game21,
+            "playerHand" => $playerHand,
+            "bankHand" => $bankHand,
+            "playerScore" => $playerScore,
+            "bankScore" => $bankScore,
+            'session' => $session->all()
+        ];
+
+        // Render the template with the data
+        return $this->render('game21/gameover.html.twig', $data);
     }
 }

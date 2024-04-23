@@ -8,9 +8,9 @@
 {{ include('flash.html.twig') }}
 
 <form method="post" action="">
-        <input type="submit" name="hit" value="Hit" onClick="this.form.action='{{ path('game_hit') }}';">
-        <input type="submit" name="stand" value="Stand" onClick="this.form.action='{{ path('game_stand') }}';">
+    <p>
         <input type="submit" name="restart" value="Restart" onClick="this.form.action='{{ path('game_init') }}';this.form.method='get';">
+    </p>
 </form>
 
     <h3>Player: {{ playerScore }}</h3>

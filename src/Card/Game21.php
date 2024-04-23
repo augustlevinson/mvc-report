@@ -79,4 +79,28 @@ class Game21
     {
         return $this->scoreBoard;
     }
+
+    public function winner()
+    {
+        $playerScore = $this->scoreBoard['Player'];
+        $bankScore = $this->scoreBoard['Bank'];
+
+
+        if (count($playerScore) == 2) {
+            if ($playerScore[0] > 21 && $playerScore[1] > 21) {
+                $winner = 'Bank';
+                $reason = 'Player is bust.';
+            }
+        }
+        if ($playerScore[0] > 21) {
+            $winner = 'Bank';
+            $reason = 'Player is bust.';
+        } elseif ($bankScore[0] > 21) {
+            return 'Player';
+        } elseif ($playerScore[0] > $bankScore[0]) {
+            return 'Player';
+        } elseif ($playerScore[0] < $bankScore[0]) {
+            return 'Bank';
+        }
+    }
 }
