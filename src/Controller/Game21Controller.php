@@ -74,6 +74,16 @@ class Game21Controller extends AbstractController
             'session' => $session->all()
         ];
 
+        if (count($scoreBoard['Player']) == 2) {
+            if ($scoreBoard['Player'][0] > 21 && $scoreBoard['Player'][1] >= 21) {
+                return $this->redirectToRoute('game_bust');
+            }
+        } else {
+            if ($scoreBoard['Player'][0] > 21) {
+                return $this->redirectToRoute('game_bust');
+            }
+        }
+
         // Render the template with the data
         return $this->render('game21/play.html.twig', $data);
     }
@@ -133,6 +143,18 @@ class Game21Controller extends AbstractController
             "bankHand" => $bankHand,
             'session' => $session->all()
         ];
+
+        return $this->redirectToRoute('game_over');
+    }
+
+    #[Route("/game/bust", name: "game_bust")]
+    public function bust(
+        SessionInterface $session
+    ): Response {
+        $playerHand = $session->get("playerHand");
+        $deck = $session->get("deck21");
+        $game21 = $session->get("game21");
+        $bankHand = $session->get("bankHand");
 
         return $this->redirectToRoute('game_over');
     }
