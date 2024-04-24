@@ -7,11 +7,14 @@
 
 {{ include('flash.html.twig') }}
 
-<form method="post" action="">
-    <p>
-        <input type="submit" name="restart" value="Restart" onClick="this.form.action='{{ path('game_init') }}';this.form.method='get';">
-    </p>
-</form>
+    <div>
+        <h1>{{ finalResult.winner }} wins!</h1>
+        <h3 class="subheading-h3">{{ finalResult.reason }}</h3>
+    </div>
+
+    <form method="post" action="">
+        <input type="submit" class="large-btn" name="restart" value="Restart" onClick="this.form.action='{{ path('game_init') }}';this.form.method='get';">
+    </form>
 
     <h3>Player: {{ playerScore }}</h3>
     <div class="card-grid">
@@ -35,10 +38,10 @@
     {% endfor %}
     </div>
 
-<p>
-    Data in session:
-</p>
-{{ dump(session) }}
-<a href="{{ path('session_clear') }}">Clear session</a>
-</div>
+    <p>
+        Data in session:
+    </p>
+    {{ dump(session) }}
+    <a href="{{ path('session_clear') }}">Clear session</a>
+    </div>
 {% endblock %}

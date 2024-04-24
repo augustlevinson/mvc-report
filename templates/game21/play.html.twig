@@ -7,15 +7,15 @@
 
 {{ include('flash.html.twig') }}
 {% if (playerHand.cards|length < 2) %}
-<form method="post" action="">
-        <input type="submit" name="hit" value="Hit" onClick="this.form.action='{{ path('game_hit') }}';">
-        <input type="submit" name="restart" value="Restart" onClick="this.form.action='{{ path('game_init') }}';this.form.method='get';">
+<form class="game-btns" method="post" action="">
+        <input type="submit" class="large-btn" name="hit" value="Hit" onClick="this.form.action='{{ path('game_hit') }}';">
+        <input type="submit" class="large-btn" name="restart" value="Restart" onClick="this.form.action='{{ path('game_init') }}';this.form.method='get';">
 </form>
 {% else %}
-<form method="post" action="">
-        <input type="submit" name="hit" value="Hit" onClick="this.form.action='{{ path('game_hit') }}';">
-        <input type="submit" name="stand" value="Stand" onClick="this.form.action='{{ path('game_stand') }}';">
-        <input type="submit" name="restart" value="Restart" onClick="this.form.action='{{ path('game_init') }}';this.form.method='get';">
+<form class="game-btns" method="post" action="">
+        <input type="submit" class="large-btn" name="hit" value="Hit" onClick="this.form.action='{{ path('game_hit') }}';">
+        <input type="submit" class="large-btn" name="stand" value="Stand" onClick="this.form.action='{{ path('game_stand') }}';">
+        <input type="submit" class="large-btn" name="restart" value="Restart" onClick="this.form.action='{{ path('game_init') }}';this.form.method='get';">
 </form>
 {% endif %}
 

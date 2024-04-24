@@ -150,6 +150,8 @@ class Game21Controller extends AbstractController
         $playerScore = join(' or ', $scoreBoard['Player']);
         $bankScore = join(' or ', $scoreBoard['Bank']);
 
+        $finalResult = $game21->winner();
+
         $data = [
             "cardDeck" => $deck,
             "game21" => $game21,
@@ -157,6 +159,7 @@ class Game21Controller extends AbstractController
             "bankHand" => $bankHand,
             "playerScore" => $playerScore,
             "bankScore" => $bankScore,
+            "finalResult" => $finalResult,
             'session' => $session->all()
         ];
 

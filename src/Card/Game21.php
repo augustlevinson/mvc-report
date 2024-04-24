@@ -90,17 +90,58 @@ class Game21
             if ($playerScore[0] > 21 && $playerScore[1] > 21) {
                 $winner = 'Bank';
                 $reason = 'Player is bust.';
+                return ['winner' => $winner, 'reason' => $reason];
+            } elseif ($playerScore[0] || $playerScore[1] == 21) {
+                $playerFinal = 21;
+            } else {
+                if ($playerScore[0] || $playerScore[1] > 21) {
+                    $playerFinal = min($playerScore);
+                } else {
+                    $playerFinal = max($playerScore);
+                }
+            }
+        } else {
+            if ($playerScore[0] > 21) {
+                $winner = 'Bank';
+                $reason = 'Player is bust.';
+                return ['winner' => $winner, 'reason' => $reason];
+            } else {
+                $playerFinal = $playerScore[0];
             }
         }
-        if ($playerScore[0] > 21) {
-            $winner = 'Bank';
-            $reason = 'Player is bust.';
-        } elseif ($bankScore[0] > 21) {
-            return 'Player';
-        } elseif ($playerScore[0] > $bankScore[0]) {
-            return 'Player';
-        } elseif ($playerScore[0] < $bankScore[0]) {
-            return 'Bank';
+
+        if (count($bankScore) == 2) {
+            if ($bankScore[0] > 21 && $bankScore[1] > 21) {
+                $winner = 'Player';
+                $reason = 'Bank is bust.';
+                return ['winner' => $winner, 'reason' => $reason];
+            } else {
+                if ($bankScore[0] || $bankScore[1] > 21) {
+                    $bankFinal = min($bankScore);
+                } else {
+                    $bankFinal = max($bankScore);
+                }
+            }
+        } else {
+            if ($bankScore[0] > 21) {
+                $winner = 'Player';
+                $reason = 'Bank is bust.';
+                return ['winner' => $winner, 'reason' => $reason];
+            } else {
+                $bankFinal = $bankScore[0];
+            }
         }
+
+        if ($playerFinal > $bankFinal) {
+            $winner = 'Player';
+            $reason = 'Player has higher score.';
+        } elseif ($playerFinal < $bankFinal) {
+            $winner = 'Bank';
+            $reason = 'Bank has higher score.';
+        } else {
+            $winner = 'Bank';
+            $reason = 'Same score.';
+        }
+        return ['winner' => $winner, 'reason' => $reason];
     }
 }

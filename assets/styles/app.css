@@ -137,6 +137,10 @@ h3 {
     color: var(--main-dark);
 }
 
+.subheading-h3 {
+    margin-top: -1em;
+}
+
 p {
     font-size: 1.2em;
     color: var(--main-dark);
@@ -275,6 +279,21 @@ ul li {
     font-weight: 800;
     padding: 0.75em 1.25em;
     border-radius: 8px;
+}
+
+.large-btn {
+    margin: auto;
+    font-size: 1.5em;
+    padding: 1em 2em;
+    min-width: 4em;
+    width: fit-content;
+}
+
+.game-btns {
+    margin: auto;
+    width: fit-content;
+    display: flex;
+    gap: 1em;
 }
 
 .submit-contatiner {
