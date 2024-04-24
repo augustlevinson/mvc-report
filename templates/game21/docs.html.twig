@@ -7,11 +7,29 @@
 <h1>Game 21 Documentation</h1>
 {{ include('flash.html.twig') }}
 
+<h2>The Idea of the Game</h2>
 <p>
     <strong>Twenty-one</strong> is a card game that serves as the Swedish counterpart to the globally known game Blackjack. The key distinctions between these games lie in the card values and the gameplay setup. In twenty-one, the banker plays against one player at a time, unlike in Blackjack, where the dealer competes against all players simultaneously. Both games trace their roots back to vingt-et-un, played at the French court in the 18th century.
 </p>
 <p>
     The objective of the game is to achieve a total card value of 21 or get as close as possible without exceeding this limit, using two or more cards. Aces can be worth either 1 or 14 points, kings are worth 13, queens 12, and jacks 11. Number cards hold the same value as their face value.
+</p>
+
+<h2>Components</h2>
+<p>
+The game is built around four classes:
+</p>
+<p>
+<strong>Card</strong> makes up a single card.
+</p>
+<p>
+<strong>DeckOfCards</strong> is responsible for the functionality of the deck populated by Card objects.
+</p>
+<p>
+<strong>CardHand</strong> holds a hand of cards, drawing from the deck.
+</p>
+<p>
+<strong>Game21</strong> handles the game logic.
 </p>
 
 <h2>Flowchart</h2>
@@ -23,7 +41,7 @@
 <pre>
     <code>
 Game start
-  Initialize DeckOfCards and Hand objects (playerHand and bankHand)
+  Initialize DeckOfCards and CardHand objects (playerHand and bankHand)
   Shuffle DeckOfCards
   Player draws 1 card from DeckOfCards
   Display playerHand value
