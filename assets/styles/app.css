@@ -296,6 +296,10 @@ ul li {
     gap: 1em;
 }
 
+.disabled {
+    opacity: 0.5;
+}
+
 .submit-contatiner {
     display: flex;
     width: 100%;
