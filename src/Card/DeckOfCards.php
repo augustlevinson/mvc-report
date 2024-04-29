@@ -4,7 +4,8 @@ namespace App\Card;
 
 class DeckOfCards
 {
-    protected $cards = [];
+    /** @var Card[] */
+    protected array $cards = [];
 
     public function __construct()
     {
@@ -12,18 +13,24 @@ class DeckOfCards
         $values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
 
         foreach ($suits as $suit) {
-            foreach ($values as $index => $value) {
+            foreach ($values as $value) {
                 $this->cards[] = new Card($suit, $value);
             }
         }
     }
 
-    public function getAllCards()
+    /**
+     * @return Card[]
+     */
+    public function getAllCards(): array
     {
         return $this->cards;
     }
 
-    public function getAllCardsArray()
+    /**
+     * @return array<array<string, string>>
+     */
+    public function getAllCardsArray(): array
     {
         $cards = [];
         foreach ($this->cards as $card) {
@@ -32,51 +39,53 @@ class DeckOfCards
         return $cards;
     }
 
-    public function shuffleCards()
+    public function shuffleCards(): void
     {
         shuffle($this->cards);
     }
 
-    public function drawCard()
+    /**
+     * @return Card|null
+     */
+    public function drawCard(): ?Card
     {
-        if (count($this->cards) == 0) {
+        if (count($this->cards) === 0) {
             return null;
-        } else {
-            $drawnCardIndex = array_rand($this->cards);
-            if (array_key_exists($drawnCardIndex, $this->cards)) {
-                $drawnCard = $this->cards[$drawnCardIndex];
-                array_splice($this->cards, $drawnCardIndex, 1);
-                return $drawnCard;
-            } else {
-                return null;
-            }
         }
+
+        $drawnCardIndex = array_rand($this->cards);
+        $drawnCard = $this->cards[$drawnCardIndex];
+        array_splice($this->cards, (int)$drawnCardIndex, 1);
+
+        return $drawnCard;
     }
 
-    public function drawNumber(int $number)
+    /**
+     * @param int $number
+     * @return Card[]|null
+     */
+    public function drawNumber(int $number): ?array
     {
-        if (count($this->cards) == 0) {
+        if (count($this->cards) === 0) {
             return null;
         }
+
         $drawnCards = [];
-        if (count($this->cards) < $number) {
-            $iterate = count($this->cards);
-        } else {
-            $iterate = $number;
-        }
+        $iterate = min(count($this->cards), $number);
 
         for ($i = 0; $i < $iterate; $i++) {
             $drawnCardIndex = array_rand($this->cards);
-            if (array_key_exists($drawnCardIndex, $this->cards)) {
-                $drawnCards[] = $this->cards[$drawnCardIndex];
-                array_splice($this->cards, $drawnCardIndex, 1);
-            }
+            $drawnCards[] = $this->cards[$drawnCardIndex];
+            array_splice($this->cards, (int)$drawnCardIndex, 1);
         }
 
         return $drawnCards;
     }
 
-    public function getRemainingCards()
+    /**
+     * @return int
+     */
+    public function getRemainingCards(): int
     {
         return count($this->cards);
     }

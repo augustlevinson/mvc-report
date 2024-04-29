@@ -8,8 +8,8 @@ use App\Card\CardHand;
 use App\Card\DeckOfCards;
 use App\Card\Game21;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -99,7 +99,7 @@ class Game21Controller extends AbstractController
 
         $playerHand->addCard($deck->drawCard());
         $game21->countScore('Player', $playerHand);
-        
+
         $scoreBoard = $game21->getScoreBoard();
         $session->set("scoreBoard", $scoreBoard);
 
@@ -126,11 +126,10 @@ class Game21Controller extends AbstractController
 
         $bankScore = $game21->bankDraws($deck, $bankHand);
         if (count($bankScore) == 2) {
-            while ($bankScore[0] < 17 || $bankScore[1] < 17) {
+            while ($bankScore[0] < 17 && $bankScore[1] < 17) {
                 $bankScore = $game21->bankDraws($deck, $bankHand);
             }
-        }
-        else {
+        } else {
             while ($bankScore[0] < 17) {
                 $bankScore = $game21->bankDraws($deck, $bankHand);
             }
@@ -187,5 +186,28 @@ class Game21Controller extends AbstractController
 
         // Render the template with the data
         return $this->render('game21/gameover.html.twig', $data);
+    }
+
+    #[Route("/api/game", name: "game_get", methods: ['GET'])]
+    public function standings(SessionInterface $session): Response
+    {
+        if ($session->has("game21")) {
+            $game21 = $session->get("game21");
+        } else {
+            $game21 = new game21();
+            $session->set("game21", $game21);
+        }
+
+        $data = [
+            'game21' => $game21->getScoreBoard(),
+        ];
+
+        // return new JsonResponse($data);
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
     }
 }

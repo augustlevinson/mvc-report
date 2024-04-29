@@ -4,11 +4,12 @@ namespace App\Card;
 
 class Card
 {
-    protected $suit;
-    protected $value;
-    protected $graphic;
+    protected string $suit;
+    protected string $value;
+    protected string $graphic;
 
-    private static $graphics = [
+    /** @var array<string, string> */
+    private static array $graphics = [
         'Spades-2' => '🂢', 'Spades-3' => '🂣', 'Spades-4' => '🂤', 'Spades-5' => '🂥',
         'Spades-6' => '🂦', 'Spades-7' => '🂧', 'Spades-8' => '🂨', 'Spades-9' => '🂩',
         'Spades-10' => '🂪', 'Spades-Jack' => '🂫', 'Spades-Queen' => '🂭', 'Spades-King' => '🂮', 'Spades-Ace' => '🂡',
@@ -23,29 +24,29 @@ class Card
         'Clubs-10' => '🃚', 'Clubs-Jack' => '🃛', 'Clubs-Queen' => '🃝', 'Clubs-King' => '🃞', 'Clubs-Ace' => '🃑', 'Joker-Joker' => '🃟'
     ];
 
-    public function __construct($suit, $value)
+    public function __construct(string $suit, string $value)
     {
         $this->suit = $suit;
         $this->value = $value;
         $this->graphic = self::$graphics["{$suit}-{$value}"];
     }
 
-    public function getSuit()
+    public function getSuit(): string
     {
         return $this->suit;
     }
 
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
 
-    public function getGraphic()
+    public function getGraphic(): string
     {
         return $this->graphic;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         if ($this->suit == 'Joker') {
             return $this->suit;
@@ -53,7 +54,8 @@ class Card
         return $this->value . ' of ' . $this->suit;
     }
 
-    public function toArray()
+    /** @return array<string, string> */
+    public function toArray(): array
     {
         return [
             'suit' => $this->suit,

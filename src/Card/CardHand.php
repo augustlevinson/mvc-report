@@ -2,26 +2,35 @@
 
 namespace App\Card;
 
+use App\Card\Card;
+
 class CardHand
 {
-    protected $cards = [];
+    /** @var Card[] */
+    protected array $cards = [];
 
     public function __construct()
     {
-        
+        // Constructor intentionally left empty
     }
 
-    public function addCard(Card $card)
+    public function addCard(Card $card): void
     {
         $this->cards[] = $card;
     }
 
-    public function getCards()
+    /**
+     * @return Card[]
+     */
+    public function getCards(): array
     {
         return $this->cards;
     }
 
-    public function getValues()
+    /**
+     * @return array<string>
+     */
+    public function getValues(): array
     {
         $values = [];
         foreach ($this->cards as $card) {
