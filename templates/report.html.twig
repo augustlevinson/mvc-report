@@ -75,8 +75,24 @@
     </section>
     <section id="kmom03">
         <a href="#kmom03"><h2>kmom03</h2></a>
+        <h3 class="report-h3">Berätta hur det kändes att modellera ett kortspel med flödesdiagram och psuedokod. Var det något som du tror stödjer dig i din problemlösning och tankearbete för att strukturera koden kring en applikation?</h3>
         <p>
-            Report text here.
+            Jag bestämde mig för att lägga mycket tid på dessa inledande delar, enligt principen “measure twice, cut once”. Att först tvingas tänka igenom logiken några varv var nog bra. Det gav en överblick över vad det var som skulle implementeras. Detta underlättade sedan kodandet, då det mest handlade om att följa planen och försöka lösa logiken. Det kändes helt klart mer strukturerat än om jag hade hoppat rakt in i koden.
+        </p>
+        <h3 class="report-h3">Berätta om din implementation från uppgiften. Hur löste du uppgiften, är du nöjd/missnöjd, vilken förbättringspotential ser du i din kod, dina klasser och applikationen som helhet?</h3>
+        <p>
+            Jag försökte så långt jag kunde att hålla routecontrollern kort och koncis. Detta genom att låta Game21-klassen stå för lejonparten av spellogiken. Varje kort är ett objekt av klassen Card. Kortleken och dess metoder utgörs av DeckOfCards, som populerar sig med objekt av Cardklassen. CardHand utgör spelarens och bankens respektive korthänder, som dras från kortleken och består av Cardobjekt. 
+        </p>
+        <p>
+            Jag är hyfsat nöjd med resultatet, men inser att det finns en del punkter att förbättra. Game21 hade kunnat få fler metoder så att routern bara anropar den, exempelvis metoder för att initiera korthand och kortlek. Nu har controllern beroende av fyra klasser, om allt istället hade gått via Game21 hade det räckt med den som beroende.
+        </p>
+        <h3 class="report-h3">Vilken är din känsla för att koda i ett ramverk som Symfony, så här långt in i kursen?</h3>
+        <p>
+            När allt väl är på plats är det ganska skönt att ha ett ramverk. Det är enklare att hämta variabler från klasserna och visa upp dem i en sida. Symfony erbjuder dessutom enklare debugging, vilket kan underlätta enormt vid felsökande.
+        </p>
+        <h3 class="report-h3">Vilken är din TIL för detta kmom?</h3>
+        <p>
+            Fördela ansvaret på klasserna. Om en klass gör en sak blir det enklare att ändra beteendet. Om en klass behöver något specifikt från en annan klass, skapa en metod för detta i den andra klassen. I takt med att klasserna och programmen växer kan man alltid generalisera metoder och istället tillåta fler parametrar för att uppnå samma specifika resultat.
         </p>
     </section>
     <section id="kmom04">
