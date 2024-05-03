@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Dice;
+namespace App\Card;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test cases for class Dice.
+ * Test cases for class Game21.
  */
-class DiceTest extends TestCase
+class Game21Test extends TestCase
 {
     /**
      * Construct object and verify that the object has the expected
      * properties, use no arguments.
      */
-    public function testCreateDice()
+    public function testCreateGame21()
     {
-        $die = new Dice();
-        $this->assertInstanceOf("\App\Dice\Dice", $die);
-
-        $res = $die->getAsString();
-        $this->assertNotEmpty($res);
+        $game = new Game21();
+        $this->assertInstanceOf("\App\Card\Game21", $game);
     }
 }
