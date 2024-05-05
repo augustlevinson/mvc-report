@@ -97,8 +97,25 @@
     </section>
     <section id="kmom04">
         <a href="#kmom04"><h2>kmom04</h2></a>
+        <h3 class="report-h3">Berätta hur du upplevde att skriva kod som testar annan kod med PHPUnit och hur du upplever PHPUnit rent allmänt.</h3>
         <p>
-            Report text here.
+            Jag tyckte det var riktigt kul att skriva tester! PHPUnit skiljer sig inte så vansinnigt mycket från den testning vi gjorde i oopythonkursen. Där skrapade vi bara på ytan av enhetstestning, men nu i detta kursmoment känner jag verkligen att vi fick mycket på fötterna om hur och varför man testar. Då särskilt enhetstester med PHPUnit, men det var också bra att få en liten idé om hur olika faser och typer av tester kan se ut.
+        </p>
+        <h3 class="report-h3">Hur väl lyckades du med kodtäckningen av din kod, lyckades du nå mer än 90% kodtäckning?</h3>
+        <p>
+            Jag lyckades nå <strong>96.75%</strong> kodtäckning. Det är jag nöjd med! Det är några sista rader i Game21 som inte täcks.
+        </p>
+        <h3 class="report-h3">Upplever du din egen kod som “testbar kod” eller finns det delar i koden som är mer eller mindre testbar och finns det saker som kan göras för att förbättra kodens testbarhet?</h3>
+        <p>
+            Överlag tycker jag mina klasser består av testbar kod. Jag gjorde inga ändringar i koden för att öka testbarheten. Klassen som sköter spellogiken, Game21, hade dock kunnat delas upp bättre för att öka testbarheten. Metoder använder varandra, vilket gör att de i vissa fall testas via varandra. Där fick jag göra många olika tester, ofta med många olika steg i, för att få en god kodtäckning. Då Game21 är så beroende av andra klasser ville jag egentligen testa mockning i testerna för just den klassen, men tiden blev för knapp.
+        </p>
+        <h3 class="report-h3">Fundera över om du anser att testbar kod är något som kan identifiera “snygg och ren kod”.</h3>
+        <p>
+            Ja, det kan nog ofta vara sant. Jag tänker att ju mindre delkomponenter koden är uppdelad i desto lättare blir dessa att återanvända för att slippa upprepa sig. Därigenom torde det även bli lättare att isolera varje del och skriva tester som verkligen testar alla delar av kodens funktionalitet. Dessutom blir det ju lättare för en själv eller någon annan att få koll på vad olika delar av koden gör om den är inkapslad i många beståndsdelar som ansvarar för få saker.
+        </p>
+        <h3 class="report-h3">Vilken är din TIL för detta kmom?</h3>
+        <p>
+            Enhetstestning gör att man får syn på sin logik och eventuella brister i den, samtidigt som de är ganska enkla att definiera utifrån en kravspecifikation. Därför är det bra att sätta upp enhetstester från början och sedan bygger man kod som klarar dessa. Testdrivet, helt enkelt - det vill jag testa på!
         </p>
     </section>
     <section id="kmom05">
