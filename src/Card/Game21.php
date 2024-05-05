@@ -13,12 +13,19 @@ class Game21
     /** @var array<string,array<int>> */
     protected $scoreBoard = [];
 
+    /**
+     * Constructs a new Game21 instance.
+     */
     public function __construct()
     {
         $this->scoreBoard = ['Bank' => [0], 'Player' => [0]];
     }
 
-    /** @return array<int> */
+    /**
+     * Draws a card for the bank and updates the score.
+     *
+     * @return array<int> The updated score of the bank.
+     */
     public function bankDraws(DeckOfCards $deck, CardHand $bankHand): array
     {
         $bankScore = $this->countScore('Bank', $bankHand);
@@ -32,7 +39,11 @@ class Game21
         return $bankScore;
     }
 
-    /** @return array<int> */
+    /**
+     * Calculates and updates the score for a player.
+     *
+     * @return array<int> The updated score of the player.
+     */
     public function score(string $player, CardHand $hand): array
     {
         $values = $hand->getValues();
@@ -47,7 +58,11 @@ class Game21
         return $scoreArray;
     }
 
-    /** @return array<int> */
+    /**
+     * Calculates and updates the score for a player, considering the Ace card as 1 or 14.
+     *
+     * @return array<int> The updated score of the player.
+     */
     public function scoreWithAce(string $player, CardHand $hand): array
     {
         $values = $hand->getValues();
@@ -68,7 +83,11 @@ class Game21
         return $scoreArray;
     }
 
-    /** @return array<int> */
+    /**
+     * Counts the score for a player, considering the presence of an Ace card.
+     *
+     * @return array<int> The calculated score of the player.
+     */
     public function countScore(string $player, CardHand $hand): array
     {
         $values = $hand->getValues();
@@ -81,13 +100,21 @@ class Game21
         return $score;
     }
 
-    /** @return array<string,array<int>> */
+    /**
+     * Returns the current score board.
+     *
+     * @return array<string,array<int>> The current score board.
+     */
     public function getScoreBoard(): array
     {
         return $this->scoreBoard;
     }
 
-    /** @return array<string,string> */
+    /**
+     * Determines the winner of the game and the reason for winning.
+     *
+     * @return array<string,string> The winner and the reason for winning.
+     */
     public function winner(): array
     {
         $playerScore = $this->scoreBoard['Player'];
@@ -102,8 +129,7 @@ class Game21
             } else {
                 if ($playerScore[0] == 21 || $playerScore[1] == 21) {
                     $playerFinal = 21;
-                }
-                elseif ($playerScore[0] > 21 || $playerScore[1] > 21) {
+                } elseif ($playerScore[0] > 21 || $playerScore[1] > 21) {
                     $playerFinal = min($playerScore);
                 } else {
                     $playerFinal = max($playerScore);

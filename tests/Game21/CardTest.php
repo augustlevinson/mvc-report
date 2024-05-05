@@ -13,7 +13,7 @@ class CardTest extends TestCase
      * Construct object and verify that the object has the expected
      * properties.
      */
-    public function testCreateCard()
+    public function testCreateCard(): void
     {
         $card = new Card("Hearts", "10");
         $this->assertInstanceOf("\App\Card\Card", $card);
@@ -24,10 +24,10 @@ class CardTest extends TestCase
     }
 
     /**
-     * Construct object with Joker and verify that the __toString() method 
+     * Construct object with Joker and verify that the __toString() method
      * returns the expected string.
      */
-    public function testToString()
+    public function testToString(): void
     {
         $card = new Card("Joker", "Joker");
 
@@ -36,10 +36,10 @@ class CardTest extends TestCase
     }
 
     /**
-     * Construct object and verify that the getSuit() method returns the 
+     * Construct object and verify that the getSuit() method returns the
      * expected string.
      */
-    public function testGetSuit()
+    public function testGetSuit(): void
     {
         $card = new Card("Diamonds", "4");
 
@@ -48,10 +48,10 @@ class CardTest extends TestCase
     }
 
     /**
-     * Construct object and verify that the getValue() method returns the 
+     * Construct object and verify that the getValue() method returns the
      * expected string.
      */
-    public function testGetValue()
+    public function testGetValue(): void
     {
         $card = new Card("Spades", "Queen");
 
@@ -60,10 +60,10 @@ class CardTest extends TestCase
     }
 
     /**
-     * Construct object and verify that the getGraphic() method returns the 
+     * Construct object and verify that the getGraphic() method returns the
      * expected string.
      */
-    public function testGetGraphic()
+    public function testGetGraphic(): void
     {
         $card = new Card("Clubs", "Ace");
 
@@ -72,10 +72,10 @@ class CardTest extends TestCase
     }
 
     /**
-     * Construct object and verify that the toArray() method returns the 
+     * Construct object and verify that the toArray() method returns the
      * expected array.
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $card = new Card("Clubs", "Ace");
 

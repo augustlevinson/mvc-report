@@ -13,7 +13,7 @@ class CardHandTest extends TestCase
      * Construct object and verify that the object has the expected
      * properties.
      */
-    public function testCreateCardHand()
+    public function testCreateCardHand(): void
     {
         $hand = new CardHand();
         $this->assertInstanceOf("\App\Card\CardHand", $hand);
@@ -30,11 +30,11 @@ class CardHandTest extends TestCase
      * Construct object and verify that the object has the expected
      * properties.
      */
-    public function testAddCard()
+    public function testAddCard(): void
     {
         $hand = new CardHand();
 
-        
+
         // Test that the hand has cards after addCard()
         $hand->addCard(new Card("Hearts", "10"));
         $hand->addCard(new Card("Clubs", "Ace"));

@@ -148,37 +148,37 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Card\\Game21\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructs\u0020a\u0020new\u0020Game21\u0020instance.",
             "url": "classes/App-Card-Game21.html#method___construct"
         },                {
             "fqsen": "\\App\\Card\\Game21\u003A\u003AbankDraws\u0028\u0029",
             "name": "bankDraws",
-            "summary": "",
+            "summary": "Draws\u0020a\u0020card\u0020for\u0020the\u0020bank\u0020and\u0020updates\u0020the\u0020score.",
             "url": "classes/App-Card-Game21.html#method_bankDraws"
         },                {
             "fqsen": "\\App\\Card\\Game21\u003A\u003Ascore\u0028\u0029",
             "name": "score",
-            "summary": "",
+            "summary": "Calculates\u0020and\u0020updates\u0020the\u0020score\u0020for\u0020a\u0020player.",
             "url": "classes/App-Card-Game21.html#method_score"
         },                {
             "fqsen": "\\App\\Card\\Game21\u003A\u003AscoreWithAce\u0028\u0029",
             "name": "scoreWithAce",
-            "summary": "",
+            "summary": "Calculates\u0020and\u0020updates\u0020the\u0020score\u0020for\u0020a\u0020player,\u0020considering\u0020the\u0020Ace\u0020card\u0020as\u00201\u0020or\u002014.",
             "url": "classes/App-Card-Game21.html#method_scoreWithAce"
         },                {
             "fqsen": "\\App\\Card\\Game21\u003A\u003AcountScore\u0028\u0029",
             "name": "countScore",
-            "summary": "",
+            "summary": "Counts\u0020the\u0020score\u0020for\u0020a\u0020player,\u0020considering\u0020the\u0020presence\u0020of\u0020an\u0020Ace\u0020card.",
             "url": "classes/App-Card-Game21.html#method_countScore"
         },                {
             "fqsen": "\\App\\Card\\Game21\u003A\u003AgetScoreBoard\u0028\u0029",
             "name": "getScoreBoard",
-            "summary": "",
+            "summary": "Returns\u0020the\u0020current\u0020score\u0020board.",
             "url": "classes/App-Card-Game21.html#method_getScoreBoard"
         },                {
             "fqsen": "\\App\\Card\\Game21\u003A\u003Awinner\u0028\u0029",
             "name": "winner",
-            "summary": "",
+            "summary": "Determines\u0020the\u0020winner\u0020of\u0020the\u0020game\u0020and\u0020the\u0020reason\u0020for\u0020winning.",
             "url": "classes/App-Card-Game21.html#method_winner"
         },                {
             "fqsen": "\\App\\Card\\Game21\u003A\u003A\u0024scoreMap",

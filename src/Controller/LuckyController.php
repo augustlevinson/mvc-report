@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class LuckyController
 {
     #[Route('/lucky/hi')]
-    public $stringy = "strängen hej hej";
+    public string $stringy = "strängen hej hej";
     public function hi(): Response
     {
         $number = random_int(0, 9);
