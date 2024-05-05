@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1714750439">
-  <project timestamp="1714750439">
+<coverage generated="1714920506">
+  <project timestamp="1714920506">
     <file name="/Users/august/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="7" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="20" coveredelements="20"/>
       </class>
-      <line num="27" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="16"/>
-      <line num="29" type="stmt" count="16"/>
-      <line num="30" type="stmt" count="16"/>
-      <line num="31" type="stmt" count="16"/>
+      <line num="27" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="17"/>
+      <line num="29" type="stmt" count="17"/>
+      <line num="30" type="stmt" count="17"/>
+      <line num="31" type="stmt" count="17"/>
       <line num="34" type="method" name="getSuit" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="36" type="stmt" count="1"/>
-      <line num="39" type="method" name="getValue" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="41" type="stmt" count="1"/>
+      <line num="39" type="method" name="getValue" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="41" type="stmt" count="2"/>
       <line num="44" type="method" name="getGraphic" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="46" type="stmt" count="1"/>
       <line num="49" type="method" name="__toString" visibility="public" complexity="2" crap="2" count="2"/>
@@ -29,20 +29,20 @@
     </file>
     <file name="/Users/august/dbwebb-kurser/mvc/me/report/src/Card/CardHand.php">
       <class name="App\Card\CardHand" namespace="global">
-        <metrics complexity="5" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="11" coveredelements="0"/>
+        <metrics complexity="5" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="11" coveredelements="11"/>
       </class>
-      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="15" type="stmt" count="0"/>
-      <line num="17" type="method" name="addCard" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="19" type="stmt" count="0"/>
-      <line num="25" type="method" name="getCards" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="27" type="stmt" count="0"/>
-      <line num="33" type="method" name="getValues" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="35" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <metrics loc="42" ncloc="34" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="11" coveredelements="0"/>
+      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="15" type="stmt" count="2"/>
+      <line num="17" type="method" name="addCard" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="19" type="stmt" count="1"/>
+      <line num="25" type="method" name="getCards" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="27" type="stmt" count="1"/>
+      <line num="33" type="method" name="getValues" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <metrics loc="42" ncloc="34" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="11" coveredelements="11"/>
     </file>
     <file name="/Users/august/dbwebb-kurser/mvc/me/report/src/Card/DeckOfCards.php">
       <class name="App\Card\DeckOfCards" namespace="global">
@@ -675,6 +675,6 @@
       </class>
       <metrics loc="12" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <metrics files="17" loc="1305" ncloc="1248" classes="15" methods="73" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="499" coveredstatements="47" elements="572" coveredelements="64"/>
+    <metrics files="17" loc="1305" ncloc="1248" classes="15" methods="73" coveredmethods="21" conditionals="0" coveredconditionals="0" statements="499" coveredstatements="54" elements="572" coveredelements="75"/>
   </project>
 </coverage>
