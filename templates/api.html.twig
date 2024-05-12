@@ -36,7 +36,7 @@
                 <h3 class="api-link">/deck/draw/:number</h3>
                 <div class="submit-container">
                     <h3 class="form-h3">/deck/draw/</h3>
-                    <input type="number" id="numInput" name="num" min="1" value="4">
+                    <input type="number" id="numInput" name="num" min="1" value="4" onFocus="this.select()">
                     <input class="api-submit" type="submit" value="Submit">
                 </div>
             </form>
@@ -53,6 +53,29 @@
                 <h3>/game</h3>
             </a>
             <p>Returns current card game standings as a JSON object.</p>
+        </div>
+        <div class="api-container">
+            <a href="api/library/books">
+                <h3>/library/books</h3>
+            </a>
+            <p>Returns all the books in the library as a JSON object.</p>
+        </div>
+            <div class="api-container">
+            <form id="libraryForm" class="api-link" action="{{ url('library_single_json', {'isbn': '0'}) }}" method="POST" onsubmit="updateLibraryAction(this)">
+                <h3 class="api-link">/library/book/:isbn</h3>
+                <div class="submit-container">
+                    <h3 class="form-h3">/library/book/</h3>
+                    <input type="text" id="bookInput" value="<isbn>" onFocus="this.select()">
+                    <input class="api-submit" type="submit" value="Submit">
+                </div>
+            </form>
+            <script>
+            function updateLibraryAction(form) {
+                var num = document.getElementById('bookInput').value;
+                form.action = form.action.replace('/0', '/' + num);
+            }
+            </script>
+            <p>Returns book of given ISBN as a JSON object, if it exists in database.</p>
         </div>
     </div>
 </div>

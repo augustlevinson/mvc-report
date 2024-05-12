@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Books view{% endblock %}
+
+{% block body %}
+<div class="main">
+<h1>Library</h1>
+    {% if books is not empty %}
+    <table class="books-table">
+    <tr class="bookHeadingRow">
+        <th class="img-td"></th>
+        <th class="title-td">Title</th>
+        <th class="author-td">Author</th>
+        <th class="isbn-td">ISBN</th>
+    </tr>
+    {% for book in books %}
+    <tr class="bookRow">
+        <td class="img-td"><img src="{{ book.getImage|e }}"></td>
+        <td class="title-td"><a href="{{ path('single_book', {'id': book.getId}) }}">{{ book.getTitle|e }} ({{ book.getId|e }})</a></td>
+        <td class="author-td">{{ book.getAuthor|e }}</td>
+        <td class="isbn-td">{{ book.getIsbn|e }}</td>
+    </tr>
+    {% endfor %}
+</table>
+    {% else %}
+    <p>Library is empty.</p>
+    {% endif %}
+
+<h2>Add a book</h2>
+<form action="{{ path('book_create') }}" method="post">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title"><br>
+    <label for="isbn">ISBN:</label><br>
+    <input type="text" id="isbn" name="isbn"><br>
+    <label for="author">Author:</label><br>
+    <input type="text" id="author" name="author"><br>
+    <label for="image">Image URL:</label><br>
+    <input type="text" id="image" name="image"><br>
+    <input type="submit" value="Submit">
+</form>
+
+</div>
+{% endblock %}

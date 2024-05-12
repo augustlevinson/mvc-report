@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book details{% endblock %}
+
+{% block body %}
+<div class="main">
+<h1>Book Details</h1>
+
+<div class="single-book">
+    <img src="{{ book.getImage|e }}">
+    <div class="book-details">
+        <h2>{{ book.getTitle|e }}</h2>
+        <p>Author: {{ book.getAuthor|e }}</p>
+        <p>ISBN: {{ book.getIsbn|e }}</p>
+    </div>
+</div>
+
+<h2>Edit details</h2>
+
+<form action="{{ path('book_update', {'id': book.getId}) }}" method="post">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" value="{{ book.getTitle }}"><br>
+    <label for="isbn" >ISBN:</label><br>
+    <input type="text" id="isbn" name="isbn" value="{{ book.getIsbn }}"><br>
+    <label for="author">Author:</label><br>
+    <input type="text" id="author" name="author" value="{{ book.getAuthor }}"><br>
+    <label for="image">Image URL:</label><br>
+    <input type="text" id="image" name="image" value="{{ book.getImage }}"><br>
+    <input type="submit" value="Submit">
+</form>
+
+<h3 class="red-text">Danger zone:</h3>
+<form action="{{ path('book_delete', {'id': book.getId}) }}" method="post">
+    <input class="red" type="submit" value="Delete book">
+</form>
+</div>
+{% endblock %}

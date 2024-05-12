@@ -182,7 +182,15 @@ hr {
     margin: 2.5em 0;
 }
 input {
+    margin-bottom: 0.5em;
     font-size: 1em;
+    padding: 0.5em;
+}
+
+label {
+    font-family: "Hanken Grotesk", Helvetica, sans-serif;
+    font-size: 1.2em;
+    color: var(--main-dark);
 }
 
 .die {
@@ -318,6 +326,14 @@ ul li {
     border: none;
 }
 
+.red-text {
+    color: #ad2121;
+}
+
+input[type=submit].red {
+    background-color: #ad2121;
+}
+
 input[type=submit] {
     background-color: var(--main-bright);
     color: #fff;
@@ -326,16 +342,20 @@ input[type=submit] {
     padding: 0.5em;
 }
 
-input[type=number] {
+input[type=number], #bookInput {
     max-width: 2em;
     margin: auto;
     margin-right: 0.2em;
     background-color: transparent;
-    font-size: 1.4em;
+    font-size: 1.3em;
     color: var(--main-bright);
     font-weight: 800;
     border: 1px solid var(--main-bright);
     border-radius: 8px;
+}
+
+#bookInput {
+    max-width: 8em;
 }
 
 .form-h3 {
@@ -385,6 +405,56 @@ code {
 
 .scoreboard h3 {
     margin: auto;
+}
+
+.books-table {
+    width: 100%;
+}
+
+.books-table tr {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5em 0;
+    border-bottom: solid 1px #00996e;
+}
+
+.books-table th, .books-table td {
+    margin: auto;
+    padding: 0.5em;
+    font-family: "Hanken Grotesk", Helvetica, sans-serif;
+    font-size: 1.2em;
+    text-align: left;
+    color: var(--main-dark);
+}
+
+.title-td {
+    width: 200px;
+    font-weight: 800;
+}
+
+.author-td {
+    width: 200px;
+}
+
+.isbn-td {
+    width: 170px;
+}
+
+.img-td {
+    width: 60px;
+}
+
+.img-td img {
+    width: 100%;
+}
+
+.single-book {
+    display: flex;
+    gap: 3em;
+}
+
+.single-book img {
+    width: 200px;
 }
 
 
