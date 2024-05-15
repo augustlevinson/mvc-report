@@ -112,7 +112,8 @@ h1,
 h2,
 h3,
 p,
-a {
+a,
+li {
     font-family: "Hanken Grotesk", Helvetica, sans-serif;
 }
 
@@ -141,7 +142,7 @@ h3 {
     margin-top: -1em;
 }
 
-p {
+p, li {
     font-size: 1.2em;
     color: var(--main-dark);
     max-width: 800px;

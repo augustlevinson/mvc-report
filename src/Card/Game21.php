@@ -29,7 +29,6 @@ class Game21
     public function bankDraws(DeckOfCards $deck, CardHand $bankHand): array
     {
         $bankScore = $this->countScore('Bank', $bankHand);
-        $bankScore = $this->countScore('Bank', $bankHand);
         $card = $deck->drawCard();
         if ($card !== null) {
             $bankHand->addCard($card);

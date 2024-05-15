@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block body %}
+<div class="main">
+    <h1>Metrics</h1>
+    <section id="intro">
+        <a href="#intro"><h2>Introduktion</h2></a>
+        <p><strong>
+            Att sträva efter så kallad clean code är ett sätt att försöka hålla sin kod på en hög nivå när det gäller bland annat kodens läsbarhet och begriplighet samt hur lätt den är att underhålla. Det finns många aspekter av clean code, men en vanlig indelning är sex C:n:
+        </strong>
+        </p>
+        <p>
+            <strong>Codestyle</strong> handlar om hur kodens stil och formatering ser ut. Koden ska vara begriplig, läslig och lätt att uppdatera. Därför följer man ofta i sin utformning en kodstandard, inte sällan bestämd av något intresseorgan. Exempel är Python, som har stilguiden PEP 8 och PHP, som har bland annat CS Fixer. Det kan handla om regler för hur saker som indentering och namngivning av variabler sker. Oavsett vald väg är det bra om det team man jobbar i har någon form av konvention för hur saker görs.
+        </p>
+        <p>
+            <strong>Coverage</strong>, kodtäckning, är ett mått på hur stor del av koden som testas. Ju större andel av kodbasen som tas upp i testningen, desto större tillförlitlighet har testresultaten som helhet. Därför vill vi ha så god täckning som möjligt.
+        </p>
+        <p>
+            <strong>Complexity</strong> behandlar kodens logik och är ett mått på hur komplex den är. En hög kodkomplexitet innebär många operationer och villkor, vilket gör klassen/metoden svår att underhålla och förstå. Det blir också svårare att skriva tester för komplex kod, då det finns fler scenarier att täcka. Således vill vi ha låg komplexitet där det går.
+        </p>
+        <p>
+            <strong>Cohesion</strong> refererar till hur nära relaterade och fokuserade uppgifterna i en klass eller modul är. En hög cohesion (stark inre koppling) är önskvärd eftersom det innebär att klassen har ett enda ansvar. En klass med låg cohesion kan vara ett tecken på att den gör för mycket och bör delas upp i mindre, mer fokuserade klasser.
+        </p>
+        <p>
+            <strong>Coupling</strong> handlar om beroendeförhållandet mellan klasser/moduler. Låg koppling är att föredra eftersom det innebär att en klass/modul är oberoende av andra. Högt kopplade system, där klasser/moduler är starkt beroende av varandra, kan vara svåra att underhålla och förändra eftersom förändringar i en del kan ha oväntade effekter på andra delar av systemet.</p>
+        <p>
+            <strong>CRAP</strong> står för Change Risk Anti-Patterns. Det handlar alltså om hur stora risker som bedöms finnas i samband med förändring av din kod. Ju högre CRAP-värde, desto mer riskabelt är det att göra ändringar i koden. Värdet räknas ut med hjälp av kodtäckningen och komplexiteten.
+        </p>
+    </section>
+    <section id="phpmetrics">
+        <a href="#phpmetrics"><h2>PhpMetrics</h2></a>
+        <p>
+            Med hjälp av PhpMetrics kan man få hjälp med analys av sin kodbas. Programmet bygger upp en instans av ens program och skapar en rapport i HTML-format. Det är ett sätt att få syn på potentiella förbättringar och svagheter i koden. Bilden nedan visar en del av en sådan rapport. Varje bubbla är en klass/modul. På de röda bubblorna att döma kan vi direkt se att det kan finnas svårigheter att underhåla koden (maintainability). Storleken på varje bubbla ger en indikation på den cyklomatiska komplexiteten. Här finns det lite att jobba med.
+            <img class="stand-alone" src="{{ asset('img/phpmetrics1.png') }}" width="100%">
+
+            Om vi tittar närmre, under Complexity & defects, ser vi att Game21 är klassen med störst komplexitet. Jag vet att den klassens logik är knepig att hålla koncis, men jag ska försöka minska den något.
+
+            <img class="stand-alone" src="{{ asset('img/phpmetrics1-2.png') }}" width="100%">
+        </p>
+    </section>
+        <section id="scrutinizer">
+        <a href="#scrutinizer"><h2>Scrutinizer</h2></a>
+        <p>
+            Ett annat användbart verktyg för att få koll på kodens "hälsa" är Scrutinizer. Även detta program bygger upp och exekverar all kod för att sedan generera en överskådlig rapport. Här får jag en hög score från början, men något som sticker ut är min låga code coverage (19%). Den beror dels på att jag har gamla moduler från övningar som egentligen inte används samt att jag inte implementerat testning för Bookklassen och controllerklasserna.
+            <img class="stand-alone" src="{{ asset('img/scrutinizer1.png') }}" width="100%">
+
+            Vi kan även se att det finns ett antal issues i min kod. 
+
+            <img class="stand-alone" src="{{ asset('img/scrutinizer1-2.png') }}" width="80%">
+        </p>
+    </section>
+        <section id="improvements">
+        <a href="#improvements"><h2>Förbättringar</h2></a>
+        <p>
+            Jag ska försöka göra följande förbättringar:
+        </p>
+        <ol>
+            <li>Öka kodtäckning</li>
+            <li>Minska komplexitet</li>
+            <li>Minska antalet issues</li>
+        </ol>
+    </section>
+</div>
+{% endblock %}
