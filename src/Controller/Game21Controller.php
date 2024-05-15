@@ -34,7 +34,7 @@ class Game21Controller extends AbstractController
         $session->set("playerHand", $playerHand);
         $bankHand = new CardHand();
         $session->set("bankHand", $bankHand);
-        $scoreBoard = $game21->getScoreBoard();
+        $game21->getScoreBoard();
 
 
         $data = [
@@ -149,10 +149,6 @@ class Game21Controller extends AbstractController
     public function bust(
         SessionInterface $session
     ): Response {
-        $playerHand = $session->get("playerHand");
-        $deck = $session->get("deck21");
-        $game21 = $session->get("game21");
-        $bankHand = $session->get("bankHand");
 
         return $this->redirectToRoute('game_over');
     }

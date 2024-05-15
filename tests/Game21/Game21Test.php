@@ -38,7 +38,6 @@ class Game21Test extends TestCase
     public function testWinner(): void
     {
         $game = new Game21();
-        $deck = new DeckOfCards();
 
         // Create player's hand
         $playerHand = new CardHand();
@@ -66,7 +65,6 @@ class Game21Test extends TestCase
     public function testWinnerSameScore(): void
     {
         $game = new Game21();
-        $deck = new DeckOfCards();
 
         // Create player's hand
         $playerHand = new CardHand();
@@ -92,7 +90,6 @@ class Game21Test extends TestCase
     public function testWinnerPlayerBust(): void
     {
         $game = new Game21();
-        $deck = new DeckOfCards();
 
         // Create player's hand
         $playerHand = new CardHand();
@@ -161,7 +158,6 @@ class Game21Test extends TestCase
     public function testWinnerFinalscores(): void
     {
         $game = new Game21();
-        $deck = new DeckOfCards();
 
         // Create player's hand
         $playerHand = new CardHand();
