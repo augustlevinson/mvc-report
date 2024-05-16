@@ -255,6 +255,10 @@ ul li {
     line-height: 1;
 }
 
+.scrutinizer-badge {
+    border: none;
+}
+
 .Spades,
 .Clubs {
     color: var(--paragraph-dark);

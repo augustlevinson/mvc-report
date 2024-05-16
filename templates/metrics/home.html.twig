@@ -50,23 +50,51 @@
 
             <img class="stand-alone" src="{{ asset('img/scrutinizer1-2.png') }}" width="80%">
         </p>
+        <p>
+            Såhär ser mina badges ut efter förbättringar:
+        </p>
+        <a href="https://scrutinizer-ci.com/g/augustlevinson/mvc-report/"><img class="scrutinizer-badge" src="https://scrutinizer-ci.com/g/augustlevinson/mvc-report/badges/quality-score.png?b=main"></a>
+        <a href="https://scrutinizer-ci.com/g/augustlevinson/mvc-report/"><img class="scrutinizer-badge" src="https://scrutinizer-ci.com/g/augustlevinson/mvc-report/badges/coverage.png?b=main"></a>
+        <a href="https://scrutinizer-ci.com/g/augustlevinson/mvc-report/"><img class="scrutinizer-badge" src="https://scrutinizer-ci.com/g/augustlevinson/mvc-report/badges/build.png?b=main"></a>
     </section>
         <section id="improvements">
         <a href="#improvements"><h2>Förbättringar</h2></a>
         <p>
             Jag ska försöka göra följande förbättringar:
         </p>
-        <ol>
-            <li>Öka kodtäckning</li>
-            <li>Minska komplexitet</li>
-            <li>Minska antalet issues</li>
-        </ol>
-
         <p>
-            Jag börjar med att titta på om det finns oanvänd kod och kanske till och med hela klasser som jag kan ta bort. Detta drar dock upp komplexiteten snarare än sänker den, eftersom flera av modulerna jag rensade bort var små och hade låg komplexitet.
+            <strong>Öka kodtäckning</strong> - det känns som en bra grund för tillförlitliga data.
         </p>
         <p>
-            Vidare lägger jag till ett testfall och ökar kodtäckningen för Game21 till 
+            <strong>Minska genomsnittlig komplexitet</strong> - för ökad underhållbarhet hade det varit bra med mindre komplexa klasser.
+        </p>
+        <p>
+            <strong>Minska antalet issues</strong> - dessa kan utgöra buggar och känns viktiga att få bort i största möjliga mån.
+        </p>
+
+        <p>
+            Jag börjar med att se vad det är för issues Scrutinizer har hittat och löser de jag kan. Sedan tittar jag på om det finns oanvänd kod och kanske till och med hela klasser som jag kan ta bort. Detta drar dock upp komplexiteten snarare än sänker den, eftersom flera av modulerna jag rensade bort var små och hade låg komplexitet.
+        </p>
+        <p>
+            Vidare lägger jag till ett testfall och ökar kodtäckningen för Game21 till 98,72%, med hjälp av två nya tester. Det räcker inte för att få upp den totala täckningen nämnvärt. Jag försöker mig på att skriva tester för Game21Controller men efter några timmar utan framgång får jag ge upp. Istället skriver jag några enkla test för Book och Product. Nu är kodtäckningen uppe på 26%, vilket inte är toppen men trots allt en ökning med 7 procentenheter.
+        </p>
+
+        <h3>Resultat</h3>
+        <p>
+            I stort har jag lyckats förbättra två av mätvärdena, om än inte riktigt så mycket som jag ville. Antalet issues är halverade (resterande består av false positives kring oanvända variabler samt problem orsakade av dependencies) Kodtäckningen är något bättre, men inte så bra som jag hade hoppats få till.
+        </p>
+        <strong><ul>
+            <li>Kodtäckning: 26% (19%) - förbättring</li>
+            <li>Komplexitet: 4.11 (3.91) - försämring</li>
+            <li>Antal issues: 11 (22) - förbättring</li>
+        </ul></strong>
+
+        <h3>Diskussion</h3>
+        <p>
+            En fördel med det här förhållningssättet till clean code är mätbarhet - att det tydligt går att se om en arbetsinsats lett till förbättrad, "renare" kod. Dessutom kan det ge en riktning för att påbörja ett förbättringsarbete, något som annars kan vara svårt att identifiera. En potentiell fara kan dock vara att man stirrar sig blind på mätvärdena och låter dem bli självändamål istället för ett verktyg. Det märkte jag när min rensning av kod som jag inte behövde längre resulterade i sämre värden, i detta fall den genomsnittliga cyklomatiska komplexiteten. Siffrorna hade sett snyggare ut om jag behöll denna onödiga kod i kodbasen. Men hade det varit bättre?
+        </p>
+        <p>
+            Jag tror att verktyg som dessa ska ses som just sådana - verktyg. Några av många som behövs i verktygslådan. Väldigt användbara för att få syn på saker, men de klarar inte hela jobbet. Kritiskt tänkande och en egen uppfattning om målbild är minst lika viktigt. Jag tänker på Maslows behovstrappa, som också nämndes i en föreläsning. Det absolut viktigaste är att appen finns, fungerar något så när som man vill och löser ett problem. När de bitarna väl är på plats kan man ägna sig mer åt kodkvalitetsarbete som detta. Eller redan innan - beroende på vilket projekt det är. Finns det obegränsat med tid och pengar och systemets stabilitet och underhållbarhet har högsta prioritet? Ja, då kan det vara bättre att utgå från kodkvaliteten och inte släppa igenom saker förrän de uppnår en viss nivå av den.
         </p>
     </section>
 </div>
