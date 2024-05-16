@@ -2,7 +2,7 @@ imports:
     - php
 
 filter:
-    excluded_paths: [vendor/*, test/*, Dice/*]
+    excluded_paths: [vendor/*, test/*, Dice/*, tools/*]
     dependency_paths: [PhpCsFixer]
 
 build:
