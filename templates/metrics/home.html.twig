@@ -46,7 +46,7 @@
             Ett annat användbart verktyg för att få koll på kodens "hälsa" är Scrutinizer. Även detta program bygger upp och exekverar all kod för att sedan generera en överskådlig rapport. Här får jag en hög score från början, men något som sticker ut är min låga code coverage (19%). Den beror dels på att jag har gamla moduler från övningar som egentligen inte används samt att jag inte implementerat testning för Bookklassen och controllerklasserna.
             <img class="stand-alone" src="{{ asset('img/scrutinizer1.png') }}" width="100%">
 
-            Vi kan även se att det finns ett antal issues i min kod. 
+            Vi kan även se att det finns ett antal issues i min kod. Totalt är det 22 stycken. Den siffran borde vi kunna minska.
 
             <img class="stand-alone" src="{{ asset('img/scrutinizer1-2.png') }}" width="80%">
         </p>
@@ -63,7 +63,10 @@
         </ol>
 
         <p>
-            Jag börjar med att titta på om det finns oanvänd kod och kanske till och med hela klasser som jag kan ta bort.
+            Jag börjar med att titta på om det finns oanvänd kod och kanske till och med hela klasser som jag kan ta bort. Detta drar dock upp komplexiteten snarare än sänker den, eftersom flera av modulerna jag rensade bort var små och hade låg komplexitet.
+        </p>
+        <p>
+            Vidare lägger jag till ett testfall och ökar kodtäckningen för Game21 till 
         </p>
     </section>
 </div>
