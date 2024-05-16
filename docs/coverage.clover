@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1715869464">
-  <project timestamp="1715869464">
+<coverage generated="1715870962">
+  <project timestamp="1715870962">
     <file name="/Users/august/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="7" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="20" coveredelements="20"/>
@@ -689,21 +689,21 @@
     </file>
     <file name="/Users/august/dbwebb-kurser/mvc/me/report/src/Entity/Product.php">
       <class name="App\Entity\Product" namespace="global">
-        <metrics complexity="5" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="12" coveredelements="0"/>
+        <metrics complexity="5" methods="5" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="6" elements="12" coveredelements="10"/>
       </class>
       <line num="22" type="method" name="getId" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="24" type="stmt" count="0"/>
-      <line num="27" type="method" name="getName" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="29" type="stmt" count="0"/>
-      <line num="32" type="method" name="setName" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="39" type="method" name="getValue" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="44" type="method" name="setValue" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <metrics loc="51" ncloc="51" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="12" coveredelements="0"/>
+      <line num="27" type="method" name="getName" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="29" type="stmt" count="1"/>
+      <line num="32" type="method" name="setName" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="39" type="method" name="getValue" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="44" type="method" name="setValue" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="48" type="stmt" count="1"/>
+      <metrics loc="51" ncloc="51" classes="1" methods="5" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="6" elements="12" coveredelements="10"/>
     </file>
     <file name="/Users/august/dbwebb-kurser/mvc/me/report/src/Kernel.php">
       <class name="App\Kernel" namespace="global">
@@ -755,6 +755,6 @@
       <line num="52" type="stmt" count="0"/>
       <metrics loc="80" ncloc="44" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="16" coveredelements="0"/>
     </file>
-    <metrics files="18" loc="1601" ncloc="1466" classes="17" methods="91" coveredmethods="32" conditionals="0" coveredconditionals="0" statements="555" coveredstatements="133" elements="646" coveredelements="165"/>
+    <metrics files="18" loc="1601" ncloc="1466" classes="17" methods="91" coveredmethods="36" conditionals="0" coveredconditionals="0" statements="555" coveredstatements="139" elements="646" coveredelements="175"/>
   </project>
 </coverage>
