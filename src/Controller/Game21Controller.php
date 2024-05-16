@@ -146,9 +146,7 @@ class Game21Controller extends AbstractController
     }
 
     #[Route("/game/bust", name: "game_bust")]
-    public function bust(
-        SessionInterface $session
-    ): Response {
+    public function bust(): Response {
 
         return $this->redirectToRoute('game_over');
     }
