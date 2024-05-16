@@ -179,4 +179,32 @@ class Game21Test extends TestCase
         $this->assertEquals('Bank has higher score.', $res['reason']);
     }
 
+    /**
+     * Test the max and min values applied in scoring methods.
+     */
+    public function testBankFinalscores(): void
+    {
+        $game = new Game21();
+
+        // Create player's hand
+        $playerHand = new CardHand();
+        $playerHand->addCard(new Card("Diamonds", "2"));
+        $playerHand->addCard(new Card("Spades", "King"));
+        $game->countScore('Player', $playerHand);
+
+        // Create bank's hand
+        $bankHand = new CardHand();
+        $bankHand->addCard(new Card("Diamonds", "Ace"));
+        $bankHand->addCard(new Card("Spades", "5"));
+        $bankHand->addCard(new Card("Hearts", "2"));
+        $game->countScore('Bank', $bankHand);
+
+        // Test final scores
+        $res = $game->winner();
+        $this->assertTrue($game->getScoreBoard()['Bank'][0] === 21 || $game->getScoreBoard()['Bank'][1] === 21);
+        $this->assertTrue($game->getScoreBoard()['Bank'][0] === 8 || $game->getScoreBoard()['Bank'][1] === 8);
+
+        $this->assertEquals('Bank has higher score.', $res['reason']);
+    }
+
 }
