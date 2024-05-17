@@ -13,3 +13,11 @@ To clone this repository to your local machine, navigate to the disired folder i
 
 ```bash
 git clone https://github.com/augustlevinson/mvc-report.git
+```
+
+Scrutinizer badges
+---
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/?branch=main)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/?branch=main)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/badges/build.png?b=main)](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/?branch=main)
