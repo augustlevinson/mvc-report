@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+    --main-bright: #00389a;
+    --main-darken: #00276a;
+    --main-light: #3d73d1;
+    --main-dark: #000e27;
+    --paragraph-dark: #1c1c1c;
+    --white: #d0e1ff;
+}
+
+body {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: rgb(0,104,149);
+    background: radial-gradient(circle, rgba(0,104,149,1) 0%, rgba(9,9,121,1) 75%, rgba(4,0,69,1) 100%);
+}
+
+* {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.site-header {
+    width: 100%;
+    height: fit-content;
+    min-height: 100px;
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    img {
+        width: 18em;
+    }
+
+}
+
+nav {
+    width: 20em;
+    display: flex;
+    justify-items: flex-end;
+    gap: 1em;
+
+    a {
+        margin: auto;
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.2em;
+        font-weight: 700;
+    }
+}
+
+.main {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 800px;
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+}
+
+footer {
+    display: flex;
+    height: 5rem;
+    width: 100%;
+    background-color: var(--main-dark);
+}
+
+footer p {
+    text-align: center;
+    margin: auto;
+    color: var(--background-white);
+    font-size: 1em;
+}
+
+footer a {
+    text-align: center;
+    margin: auto;
+    color: var(--main-light);
+    font-size: 1em;
+}
+
+.btn {
+    padding: 0.5em 1em;
+    background-image: linear-gradient(var(--main-darken), var(--main-bright));
+    color: #fff;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    border: 2px solid var(--white);
+    border-radius: 0.5em;
+}
+
+.btn:hover {
+    background-image: linear-gradient(var(--main-bright), var(--main-bright));
+}
+
+.big {
+    padding: 1em 2em;
+    font-size: 1.5em;
+    margin: 1em 0;
+}
+
+.intro-p {
+    font-size: 1.2em;
+}
+
+.input {
+    margin-bottom: 0.5em;
+    font-size: 1em;
+    padding: 0.5em;
+    background-color: #fff;
+    color: var(--main-dark);
+    border-radius: 8px;
+    border: solid 2px var(--white);
+}
+
+.init-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#playerInputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}

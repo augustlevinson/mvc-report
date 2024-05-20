@@ -1,0 +1,48 @@
+{% extends "base-blackjack.html.twig" %}
+
+{% block title %}BlackJack{% endblock %}
+
+{% block body %}
+<div class="main">
+
+{{ include('flash.html.twig') }}
+
+<p class="intro-p">
+    This is <strong>BlackJack</strong>, a classic card game played between players and the house. Select the number of players and write their names.
+</p>
+
+<form class="init-form" action="">
+    <select class="input" id="numPlayers">
+        <option value="">Select number of players</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+
+    <div id="playerInputs"></div>
+
+    <input type="submit" value="Start the game!" class="btn big blue">
+</form>
+
+</div>
+
+<script>
+document.getElementById('numPlayers').addEventListener('change', function() {
+    var numPlayers = this.value;
+    var playerInputs = document.getElementById('playerInputs');
+
+    // Clear any existing input fields
+    playerInputs.innerHTML = '';
+
+    // Add the new input fields
+    for (var i = 1; i <= numPlayers; i++) {
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'player' + i;
+        input.classList.add('input')
+        playerInputs.appendChild(input);
+    }
+});
+</script>
+
+{% endblock %}
