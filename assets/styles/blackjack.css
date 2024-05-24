@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 :root {
     --main-bright: #00389a;
@@ -6,7 +6,10 @@
     --main-light: #3d73d1;
     --main-dark: #000e27;
     --paragraph-dark: #1c1c1c;
+    --ui-grey: #dadada;
     --white: #d0e1ff;
+    --green-white: #c2ffca;
+    --red: #941515;
 }
 
 body {
@@ -14,12 +17,12 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: rgb(0,104,149);
-    background: radial-gradient(circle, rgba(0,104,149,1) 0%, rgba(9,9,121,1) 75%, rgba(4,0,69,1) 100%);
+    background: rgb(43,43,43);
+    background: radial-gradient(circle, rgba(43,43,43,1) 25%, rgba(0,0,0,1) 100%);
 }
 
 * {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     color: #fff;
     box-sizing: border-box;
 }
@@ -27,16 +30,15 @@ body {
 .site-header {
     width: 100%;
     height: fit-content;
-    min-height: 100px;
-    padding: 1em;
+    min-height: 50px;
+    padding: 0.5em;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 
     img {
-        width: 18em;
+        width: 12em;
     }
-
 }
 
 nav {
@@ -55,15 +57,19 @@ nav {
 }
 
 .main {
-    margin: 0 auto;
-    width: 80%;
-    max-width: 800px;
+    margin: 2em auto;
+    width: 94%;
+    max-width: 1000px;
     min-height: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1em;
-    padding: 1em;
+}
+
+.row-wrapper {
+    width: 100%;
+    display: flex;
 }
 
 footer {
@@ -87,6 +93,20 @@ footer a {
     font-size: 1em;
 }
 
+h3 {
+    font-size: 1.5em;
+    text-shadow: 1px 1px 15px #0009;
+    font-weight: 900;
+}
+
+input[type="number"] {
+    margin: auto;
+    width: 3.5em;
+    font-size: 1.5em;
+    background-color: transparent;
+    border: none;
+}
+
 .btn {
     padding: 0.5em 1em;
     background-image: linear-gradient(var(--main-darken), var(--main-bright));
@@ -106,7 +126,7 @@ footer a {
 .big {
     padding: 1em 2em;
     font-size: 1.5em;
-    margin: 1em 0;
+    margin: 1em auto;
 }
 
 .intro-p {
@@ -123,14 +143,195 @@ footer a {
     border: solid 2px var(--white);
 }
 
+.radio-inputs {
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #eee;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    width: 100px;
+    font-size: 14px;
+    gap: 0.2em;
+}
+
+.radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.radio-inputs .radio input {
+    display: none;
+}
+
+.radio-inputs .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.5rem 0;
+    background-color: var(--ui-grey);
+    color: rgba(51, 65, 85, 1);
+    transition: all 0.15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked + .name {
+    background-color: var(--main-bright);
+    color: #fff;
+    font-weight: 600;
+}
+
 .init-form {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
+.bet-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.hit-stand-form {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.radio-wrapper {
+    margin: auto;
+    display: flex;
+}
+
 #playerInputs {
     display: flex;
     flex-direction: column;
     gap: 1em;
+}
+
+.table-wrapper {
+    width: 100%;
+    min-height: 600px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background: rgb(25, 113, 0);
+    background: radial-gradient(circle, rgba(25, 113, 0, 1) 0%, rgba(0, 31, 0, 1) 100%);
+    border-radius: 20px;
+    border: solid 2px var(--white);
+}
+
+.dealer-section {
+    margin: auto;
+    width: 90%;
+    gap: 1em;
+}
+
+.dealer-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0;
+    border-radius: 0 0 50% 50%;
+    background-color: #00000008;
+    margin-bottom: 1em;
+}
+
+.dealer-box h3,
+.dealer-box p {
+    text-align: center;
+}
+
+.players-section {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    justify-content: space-evenly;
+}
+
+.player-box {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 1em;
+    background-color: #00000008;
+    border-radius: 10px;
+}
+
+.player-box h3,
+.player-box p {
+    text-align: center;
+}
+
+
+.player-details > * {
+    text-shadow: 1px 1px 15px #0009;
+}
+
+.player-details p {
+    color: gold;
+    font-weight: 900;
+    margin-top: -1em;
+}
+
+.player-cards {
+    font-size: 6em;
+    line-height: 0.9;
+    text-align: center;
+    text-shadow: 1px 1px 15px #fff9;
+}
+
+.card-value {
+    font-size: 1.8em;
+    margin: 0.2em auto 1em;
+    text-align: center;
+    text-shadow: 1px 1px 15px #0009;
+}
+
+.betting-box {
+    margin: auto;
+    min-width: fit-content;
+    padding: 1em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    font-weight: 900;
+    border-radius: 4px;
+    border: solid 2px #fff8;
+}
+
+.chip {
+    margin: auto;
+    width: 3em;
+    height: 3em;
+    background-color: var(--red);
+    border: 2px dashed;
+    border-radius: 50%;
+    box-shadow: 1px 1px 15px #0009;
+
+    p {
+        font-size: 0.8em;
+        line-height: 1.4;
+    }
+}
+
+.status-p {
+    font-size: 1.5em;
+    font-weight: 900;
+    text-align: center;
+    color: gold;
+    padding: 1em 0;
+    background-color: #0000003d;
+    border-radius: 50%;
+}
+
+.sf-dump {
+    width: 100%;
 }

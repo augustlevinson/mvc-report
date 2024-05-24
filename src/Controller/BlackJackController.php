@@ -23,186 +23,162 @@ class BlackJackController extends AbstractController
         return $this->render('blackjack/home.html.twig');
     }
 
-    #[Route("/proj/init", name: "blackjack_init")]
-    public function gameInit(SessionInterface $session): Response
+    #[Route("/proj/init", name: "blackjack_init", methods: ['POST'])]
+    public function gameInit(Request $request, SessionInterface $session): Response
     {
-        // Initiate "deck21", "game21" and bank and player hands.
-        $game = new BlackJack();
-        $session->set("game21", $game21);
-        $deck = new DeckOfCards();
-        $session->set("deck21", $deck);
-        $playerHand = new CardHand();
-        $session->set("playerHand", $playerHand);
-        $bankHand = new CardHand();
-        $session->set("bankHand", $bankHand);
-        $game21->getScoreBoard();
+        // Get the request data
+        $requestData = $request->request->all();
+    
+        $players = [];
 
-
-        $data = [
-            "cardDeck" => $deck,
-            "game21" => $game21,
-            "playerHand" => $playerHand,
-            "bankHand" => $bankHand,
-            "playerScore" => 0,
-            "bankScore" => 0,
-            'session' => $session->all()
-        ];
-        // Render the template with the data
-        return $this->render('game21/play.html.twig', $data);
-    }
-
-    #[Route("/game/play", name: "game_play")]
-    public function gamePlay(SessionInterface $session): Response
-    {
-        // Get variables from session
-        $game21 = $session->get("game21");
-        $deck = $session->get("deck21");
-        $playerHand = $session->get("playerHand");
-        $bankHand = $session->get("bankHand");
-        $scoreBoard = $game21->getScoreBoard();
-
-        $playerScore = join(' or ', $scoreBoard['Player']);
-        $bankScore = join(' or ', $scoreBoard['Bank']);
-
-        $data = [
-            "cardDeck" => $deck,
-            "game21" => $game21,
-            "playerHand" => $playerHand,
-            "bankHand" => $bankHand,
-            "playerScore" => $playerScore,
-            "bankScore" => $bankScore,
-            'session' => $session->all()
-        ];
-
-        if (count($scoreBoard['Player']) == 2) {
-            if ($scoreBoard['Player'][0] > 21 && $scoreBoard['Player'][1] >= 21) {
-                return $this->redirectToRoute('game_bust');
-            }
-        } else {
-            if ($scoreBoard['Player'][0] > 21) {
-                return $this->redirectToRoute('game_bust');
+        foreach ($requestData as $key => $playerName) {
+            if (str_starts_with($key, 'player')) {
+                $players[] = $playerName;
             }
         }
 
-        // Render the template with the data
-        return $this->render('game21/play.html.twig', $data);
-    }
-
-    #[Route("/game/hit", name: "game_hit", methods: ['POST'])]
-    public function hit(
-        SessionInterface $session
-    ): Response {
-        $playerHand = $session->get("playerHand");
-        $deck = $session->get("deck21");
-        $game21 = $session->get("game21");
-        $bankHand = $session->get("bankHand");
-
-        $playerHand->addCard($deck->drawCard());
-        $game21->countScore('Player', $playerHand);
-
-        $scoreBoard = $game21->getScoreBoard();
-        $session->set("scoreBoard", $scoreBoard);
+        // Initiate "BlackJack" object.
+        $game = new BlackJack($players);
+        $session->set("blackjack", $game);
 
         $data = [
-            "cardDeck" => $deck,
-            "game21" => $game21,
-            "playerHand" => $playerHand,
-            "bankHand" => $bankHand,
-            "scoreBoard" => $scoreBoard,
+            "blackJack" => $game,
             'session' => $session->all()
         ];
-
-        return $this->redirectToRoute('game_play');
+        // Render the template with the data
+        return $this->render('blackjack/play.html.twig', $data);
     }
 
-    #[Route("/game/stand", name: "game_stand", methods: ['POST'])]
-    public function stand(
-        SessionInterface $session
-    ): Response {
-        $playerHand = $session->get("playerHand");
-        $deck = $session->get("deck21");
-        $game21 = $session->get("game21");
-        $bankHand = $session->get("bankHand");
+    #[Route("/proj/play", name: "blackjack_play", methods: ['GET'])]
+    public function gamePlay(Request $request, SessionInterface $session): Response
+    {
+        // Get the request data
+        $requestData = $request->request->all();
 
-        $bankScore = $game21->bankDraws($deck, $bankHand);
-        if (count($bankScore) == 2) {
-            while ($bankScore[0] < 17 && $bankScore[1] < 17) {
-                $bankScore = $game21->bankDraws($deck, $bankHand);
-            }
+        // Get "BlackJack" object.
+        $blackJack = $session->get("blackjack");
+
+        $data = [
+            "blackJack" => $blackJack,
+            'session' => $session->all()
+        ];
+        // Render the template with the data
+        return $this->render('blackjack/play.html.twig', $data);
+    }
+
+    #[Route("/proj/dealer", name: "blackjack_dealer")]
+    public function dealersTurn(SessionInterface $session): Response
+    {
+        // Get "BlackJack" object.
+        $blackJack = $session->get("blackjack");
+
+        $blackJack->dealerPlays();
+
+        $data = [
+            "blackJack" => $blackJack,
+            'session' => $session->all()
+        ];
+        // Render the template with the data
+        return $this->render('blackjack/dealer.html.twig', $data);
+    }
+
+    #[Route("/proj/round-finished", name: "blackjack_round_over")]
+    public function roundOver(SessionInterface $session): Response
+    {
+        // Get "BlackJack" object.
+        $blackJack = $session->get("blackjack");
+
+        $blackJack->dealerPlays();
+
+        $data = [
+            "blackJack" => $blackJack,
+            'session' => $session->all()
+        ];
+        // Render the template with the data
+        return $this->render('blackjack/finish.html.twig', $data);
+    }
+
+    #[Route("/proj/hit-stand", name: "blackjack_hit_stand", methods: ['GET'])]
+    public function hitStand(Request $request, SessionInterface $session): Response
+    {
+        // Get the request data
+        $requestData = $request->request->all();
+
+        // Get "BlackJack" object.
+        $blackJack = $session->get("blackjack");
+
+        $data = [
+            "blackJack" => $blackJack,
+            'session' => $session->all()
+        ];
+        // Render the template with the data
+        return $this->render('blackjack/hit-stand.html.twig', $data);
+    }
+
+    #[Route("/bet", name: "first_bets", methods: ["POST"])]
+    public function setCurrentBets(Request $request, SessionInterface $session)
+    {
+        // Get the "blackjack" object from the session
+        $blackJack = $session->get('blackjack');
+
+        foreach ($blackJack->getPlayers() as $playerId => $player) {
+            $bet = $request->request->get('bet_' . $playerId);
+
+            // Set the current bet
+            $player->setCurrentBet($bet);
+
+            // Set the balance
+            $oldBalance = $player->getBalance();
+            $player->setBalance($oldBalance - $bet);
+        }
+
+        if (count($blackJack->getDealer()->getCards()) == 0) {
+            $blackJack->initRound();
         } else {
-            while ($bankScore[0] < 17) {
-                $bankScore = $game21->bankDraws($deck, $bankHand);
+            $blackJack->dealRound();
+        }
+
+        // Redirect to the game page
+        return $this->redirectToRoute('blackjack_hit_stand');
+    }
+
+    #[Route("/proj/hit-or-stand", name: "blackjack_hit_or_stand", methods: ['POST'])]
+    public function hitOrStand(Request $request, SessionInterface $session): Response
+    {
+        // Get "BlackJack" object.
+        $blackJack = $session->get("blackjack");
+
+        // Get the form data
+        $formData = $request->request->all();
+
+        foreach ($formData as $key => $value) {
+            if (str_starts_with($key, 'player_')) {
+                $playerIndex = substr($key, 7); // Get the player index
+                $player = $blackJack->getPlayers()[$playerIndex];
+
+                if ($value == 'hit') {
+                    // Call the hit method on the player
+                    $blackJack->playerHits($player);
+                } else {
+                    // Call the stand method on the player
+                    $blackJack->playerStands($player);
+                }
             }
         }
 
+        // Save the updated "BlackJack" object in the session
+        $session->set("blackjack", $blackJack);
+
         $data = [
-            "cardDeck" => $deck,
-            "game21" => $game21,
-            "playerHand" => $playerHand,
-            "bankHand" => $bankHand,
+            "blackJack" => $blackJack,
             'session' => $session->all()
         ];
 
-        return $this->redirectToRoute('game_over');
-    }
-
-    #[Route("/game/bust", name: "game_bust")]
-    public function bust(): Response
-    {
-
-        return $this->redirectToRoute('game_over');
-    }
-
-    #[Route("/game/gameover", name: "game_over")]
-    public function gameOver(SessionInterface $session): Response
-    {
-        // Get variables from session
-        $game21 = $session->get("game21");
-        $deck = $session->get("deck21");
-        $playerHand = $session->get("playerHand");
-        $bankHand = $session->get("bankHand");
-        $scoreBoard = $game21->getScoreBoard();
-
-        $playerScore = join(' or ', $scoreBoard['Player']);
-        $bankScore = join(' or ', $scoreBoard['Bank']);
-
-        $finalResult = $game21->winner();
-
-        $data = [
-            "cardDeck" => $deck,
-            "game21" => $game21,
-            "playerHand" => $playerHand,
-            "bankHand" => $bankHand,
-            "playerScore" => $playerScore,
-            "bankScore" => $bankScore,
-            "finalResult" => $finalResult,
-            'session' => $session->all()
-        ];
-
-        // Render the template with the data
-        return $this->render('game21/gameover.html.twig', $data);
-    }
-
-    #[Route("/api/game", name: "game_get", methods: ['GET'])]
-    public function standings(SessionInterface $session): Response
-    {
-        if ($session->has("game21")) {
-            $game21 = $session->get("game21");
+        if ($blackJack->areAllPlayersStanding()) {
+            return $this->redirectToRoute('blackjack_dealer');
         } else {
-            $game21 = new game21();
-            $session->set("game21", $game21);
+            return $this->render('blackjack/hit-stand.html.twig', $data);
         }
-
-        $data = [
-            'game21' => $game21->getScoreBoard(),
-        ];
-
-        // return new JsonResponse($data);
-
-        $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-        return $response;
     }
+
 }

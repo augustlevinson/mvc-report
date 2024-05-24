@@ -1,0 +1,68 @@
+{% extends "base-blackjack.html.twig" %}
+
+{% block title %}BlackJack{% endblock %}
+
+{% block body %}
+<div class="main">
+
+{{ include('flash.html.twig') }}
+
+<div class="table-wrapper">
+<div class="dealer-section">
+    <div class="dealer-box">
+        <h3>Dealer</h3>
+        <div class="player-cards">
+            {% for card in blackJack.getDealer().getCards() %}
+                {{- card.getGraphic()|default('') -}}
+            {% endfor %}
+        </div>
+            {% set dealerScore = blackJack.calculatePlayerScore(blackJack.getDealer()) %}
+            <p class="card-value">
+                {% if dealerScore|length == 2 %}
+                    {{ dealerScore[0] }} or {{ dealerScore[1] }}
+                {% else %}
+                    {{ dealerScore[0] }}
+                {% endif %}
+            </p>
+    </div>
+</div>
+
+<div class="players-section">
+    {% for player in blackJack.getPlayers() %}
+        <div class="player-box">
+            <div class="player-details">
+                <h3>{{ player.getName()|default('') }}</h3>
+                <p>${{ player.getBalance()|default('') }}</p>
+            </div>
+            
+            <div class="player-cards">
+                {% for card in player.getCards() %}
+                    {{- card.getGraphic()|default('') -}}
+                {% endfor %}
+            </div>
+            {% set playerScore = blackJack.calculatePlayerScore(player) %}
+            <p class="card-value">
+                {% if playerScore|length == 2 %}
+                    {{ playerScore[0] }} or {{ playerScore[1] }}
+                {% else %}
+                    {{ playerScore[0] }}
+                {% endif %}
+            </p>
+            <div class="betting-box">
+                <div class="chip">
+                    <p>{{ player.getCurrentBet() }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+    <div class="row-wrapper">
+        <a href="{{ path('blackjack_round_over') }}" class="btn big">New Round</a>
+    </div>
+</div>
+
+{{ dump(session) }}
+<a href="{{ path('session_clear') }}">Clear session</a>
+</div>
+
+{% endblock %}

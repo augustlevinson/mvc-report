@@ -11,7 +11,7 @@
     This is <strong>BlackJack</strong>, a classic card game played between players and the house. Select the number of players and write their names.
 </p>
 
-<form class="init-form" action="">
+<form class="init-form" method="POST" action="{{ path('blackjack_init') }}">
     <select class="input" id="numPlayers">
         <option value="">Select number of players</option>
         <option value="1">1</option>
@@ -39,6 +39,8 @@ document.getElementById('numPlayers').addEventListener('change', function() {
         var input = document.createElement('input');
         input.type = 'text';
         input.name = 'player' + i;
+        input.placeholder = 'Player ' + i;
+        input.value = 'Player ' + i;
         input.classList.add('input')
         playerInputs.appendChild(input);
     }

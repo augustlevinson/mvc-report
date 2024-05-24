@@ -4,8 +4,14 @@ namespace App\Card;
 
 class BlackJack
 {
-    /** @var int */
-    protected int $numberOfPlayers;
+    /** @var array<string> */
+    protected $players;
+
+    /** @var DeckOfCards */
+    protected $deck;
+
+    /** @var Dealer */
+    protected $dealer;
 
     /** @var array<string|int,int> */
     protected $scoreMap = [
@@ -13,83 +19,166 @@ class BlackJack
         'Jack' => 10, 'Queen' => 10, 'King' => 10, 'Ace' => 11
     ];
 
+    /** @var array<Player> */
+    protected $standingPlayers = [];
+
     /** @var array<string,array<int>> */
     protected $scoreBoard = [];
 
     /**
      * Constructs a new BlackJack instance.
      */
-    public function __construct($numOfPlayers)
+    public function __construct($playersArray)
     {
-        $this->numberOfPlayers = $numOfPlayers;
-        // create a Player object for each player, and populate it with an empty CardHand object and bank account
-        // create an empty CardHand for the house
+        foreach ($playersArray as $player) {
+
+            $this->players[] = new Player($player);
+            $this->deck = new DeckOfCards;
+        }
+
+        $this->dealer = new Dealer;
+
     }
 
     /**
-     * Places a bet on a specific hand.
+     * Initializes a new round of the game and deals two cards each.
      */
-    public function placeBet(int $handIndex, int $amount)
+    public function initRound()
     {
-        // TODO: Implement placeBet() method.
-        // Take an array of bets as input and store it in the Player object
+        if ($this->deck->getRemainingCards() < 15) {
+            $this->deck = new DeckOfCards;
+        }
+
+        for ($i=0; $i<2; $i++) {
+            foreach ($this->players as $player) {
+                $player->addCard($this->deck->drawCard());
+            }
+
+            $this->dealer->addCard($this->deck->drawCard());
+        }
     }
 
     /**
-     * Deals the initial cards to all players and the house.
+     * Places bets and deals one card each.
      */
-    public function dealInitialCards()
+    public function dealRound()
     {
-        // TODO: Implement dealInitialCards() method.
+        if ($this->deck->getRemainingCards() < 15) {
+            $this->deck = new DeckOfCards;
+        }
+
+        foreach ($this->players as $player) {
+            $player->addCard($this->deck->drawCard());
+        }
+
+        $this->dealer->addCard($this->deck->drawCard());
     }
 
     /**
-     * Calculates the score of a given hand, 
-     * considering the special rule for Ace (can be 1 or 11).
+     * Getter function for the player array.
      */
-    public function calculateScore(CardHand $hand)
+    public function getPlayers()
     {
-        // TODO: Implement calculateScore() method.
+        return $this->players;
+    }
+
+    /**
+     * Getter function for the player array.
+     */
+    public function getDealer()
+    {
+        return $this->dealer;
     }
 
     /**
      * Checks if a hand is bust (score > 21).
      */
-    public function isBust(CardHand $hand)
+    public function isBust(Player $player)
     {
-        // TODO: Implement isBust() method.
+        $scores = $this->calculatePlayerScore($player);
+
+        foreach ($scores as $score) {
+            if ($score <= 21) {
+                return false;
+            }
+        }
+    
+        $this->setBust($player);
+        return true;
     }
 
     /**
-     * Checks if a hand is blackjack.
+     * Marks a player as bust.
      */
-    public function isBlackjack(CardHand $hand)
+    public function setBust(Player $player)
     {
-        // TODO: Implement isBlackjack() method.
+        $player->setBust(true);
     }
 
     /**
-     * Checks if a hand is a push (same score as the house).
+     * Marks a player as not bust.
      */
-    public function playerDrawsCard(int $handIndex)
+    public function unsetBust(Player $player)
     {
-        // TODO: Implement playerDrawsCard() method.
+        $player->setBust(false);
     }
 
     /**
-     * Draws a card for the bank.
+     * Checks if player hand is blackjack (score == 21).
      */
-    public function bankDrawsCard()
+    public function isBlackJack(Player $player)
     {
-        // TODO: Implement bankDrawsCard() method.
+        $isBlackJack = in_array(21, $this->calculatePlayerScore($player));
+
+        return $isBlackJack;
+    }
+
+    /**
+     * Marks a player as having blackjack.
+     */
+    public function setBlackJack(Player $player)
+    {
+        $player->setBlackJack(true);
+    }
+
+    /**
+     * Marks a player as not having blackjack.
+     */
+    public function unsetBlackJack(Player $player)
+    {
+        $player->setBlackJack(false);
+    }
+
+    /**
+     * Draws a card for the dealer.
+     */
+    public function dealerDrawsCard()
+    {
+        // TODO: Implement dealerDrawsCard() method.
     }
 
     /**
      * Marks a specific player's hand as standing (no more cards will be drawn).
      */
-    public function playerStands(int $handIndex)
+    public function playerStands(Player $player)
     {
-        // TODO: Implement playerStands() method.
+        $player->setPlayerStanding(true);
+    }
+
+    /**
+     * Draws a card for the player and marks them as standing if bust or blackjack.
+     */
+    public function playerHits(Player $player)
+    {
+        $player->addCard($this->deck->drawCard());
+
+        if ($this->isBlackJack($player)) {
+            $this->setBlackJack($player);
+            $this->playerStands($player);
+        } elseif ($this->isBust($player)) {
+            $this->setBust($player);
+            $this->playerStands($player);
+        }
     }
 
     /**
@@ -97,20 +186,30 @@ class BlackJack
      */
     public function areAllPlayersStanding()
     {
-        // TODO: Implement areAllPlayersStanding() method.
+        foreach ($this->players as $player) {
+            if (!$player->getPlayerStanding()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
-     * Plays the bank's turn (draws cards until score is 17 or higher).
+     * Plays the dealer's turn (draws cards until score is 17 or higher).
      */
-    public function bankPlays()
+    public function dealerPlays()
     {
-        // TODO: Implement bankPlays() method.
+        $scoreArray = $this->calculatePlayerScore($this->dealer);
+
+        while (!in_array(21, $scoreArray) && max($scoreArray) < 17) {
+            $this->dealer->addCard($this->deck->drawCard());
+            $scoreArray = $this->calculatePlayerScore($this->dealer);
+        }
     }
 
     /**
      * Determines the winner of the game based on the 
-     * scores of the player's hands and the bank's hand.
+     * scores of the player's hands and the dealer's hand.
      */
     public function determineWinner()
     {
@@ -118,26 +217,62 @@ class BlackJack
     }
 
     /**
-     * Returns the bet placed on a specific hand.
+     * Calculates and the score for a player.
+     * @return array<int> The updated score of the player.
      */
-    public function getHandBet(int $handIndex)
+    public function score(array $values): array
     {
-        // TODO: Implement getHandBet() method.
+        $score = 0;
+
+        foreach ($values as $value) {
+            $score += $this->scoreMap[$value];
+        }
+
+        return [$score];
     }
 
     /**
-     * Returns the score of a specific hand.
+     * Calculates and the score for a player, considering the Ace card as 1 or 11.
+     *
+     * @return array<int> The updated score of the player.
      */
-    public function getHandScore(int $handIndex)
+    public function scoreWithAce(array $values): array
     {
-        // TODO: Implement getHandScore() method.
+        $score1 = 0;
+        $score2 = 0;
+
+        foreach ($values as $value) {
+            if ($value == 'Ace') {
+                $score1 += 1;
+                $score2 += 11;
+            } else {
+                $score1 += $this->scoreMap[$value];
+                $score2 += $this->scoreMap[$value];
+            }
+        }
+        $scoreArray = [$score1, $score2];
+        return $scoreArray;
     }
 
     /**
-     * Returns the score of the bank's hand.
+     * Sets and returns an array of potential scores of a player's hand.
      */
-    public function getBankScore()
+    public function calculatePlayerScore(Player $player)
     {
-        // TODO: Implement getBankScore() method.
+        $values = $player->getCardsValue();
+
+        $score = 0;
+
+        if (in_array('Ace', $values)) {
+            $score = $this->scoreWithAce($values);
+            $scoreArray = $score;
+        } else {
+            $score = $this->score($values);
+            $scoreArray = $score;
+        }
+
+        $player->setCurrentScore($scoreArray);
+
+        return $scoreArray;
     }
 }
