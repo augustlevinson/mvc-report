@@ -48,7 +48,7 @@
                 <p class="card-value">{{ player.getCardsValue()|default('') }}</p>
 
                     <div class="betting-box">
-                        <input type="number" name="bet_{{ loop.index0 }}" min="0" step="25" max="{{ player.getBalance() }}" value="250">
+                        <input type="number" name="bet_{{ player.getId() }}" min="0" step="25" max="{{ player.getBalance() }}" value="250">
                     </div>
 
             </div>

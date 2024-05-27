@@ -40,6 +40,18 @@ class BlackJack
 
     }
 
+    /**
+     * Get a player by their id.
+     */
+    public function getPlayerById($id) {
+        foreach ($this->players as $player) {
+            if ($player->getId() == $id) {
+                return $player;
+            }
+        }
+        return null;
+    }
+
     public function newRoundReset()
     {
         foreach ($this->players as $player) {

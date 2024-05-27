@@ -54,12 +54,12 @@
                 {% if not player.getPlayerStanding() and not blackJack.isBlackJack(player) %}
                         <div class="radio-inputs">
                             <div class="radio">
-                                <input type="radio" id="hit_{{ loop.index0 }}" name="player_{{ loop.index0 }}" value="hit">
-                                <label class="name" for="hit_{{ loop.index0 }}">Hit</label>
+                                <input type="radio" id="hit_{{ player.getId() }}" name="player_{{ player.getId() }}" value="hit">
+                                <label class="name" for="hit_{{ player.getId() }}">Hit</label>
                             </div>
                             <div class="radio">
-                                <input type="radio" id="stand_{{ loop.index0 }}" name="player_{{ loop.index0 }}" value="stand">
-                                <label class="name" for="stand_{{ loop.index0 }}">Stand</label>
+                                <input type="radio" id="stand_{{ player.getId() }}" name="player_{{ player.getId() }}" value="stand">
+                                <label class="name" for="stand_{{ player.getId() }}">Stand</label>
                             </div>
                         </div>
                 {% else %}

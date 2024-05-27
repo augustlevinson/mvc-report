@@ -11,6 +11,9 @@ class Player
     protected $balance = 0;
 
     /** @var <int> */
+    protected $id;
+
+    /** @var <int> */
     protected $currentBet = 0;
 
     /** @var <int> */
@@ -37,6 +40,7 @@ class Player
     public function __construct($nameInput, $balanceInput=2500)
     {
         $this->name = $nameInput;
+        $this->id = rand(1, 1000);
         $this->balance = $balanceInput;
         $this->cardHand = new CardHand();
     }
@@ -47,6 +51,14 @@ class Player
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Getter function for the id of the player.
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**

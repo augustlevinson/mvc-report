@@ -18,9 +18,14 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class BlackJackController extends AbstractController
 {
     #[Route("/proj", name: "blackjack_home")]
-    public function gameDocs(): Response
+    public function blackjackHome(): Response
     {
         return $this->render('blackjack/home.html.twig');
+    }
+    #[Route("/proj/about", name: "blackjack_about")]
+    public function about(): Response
+    {
+        return $this->render('blackjack/about.html.twig');
     }
 
     #[Route("/proj/init", name: "blackjack_init", methods: ['POST'])]
@@ -143,7 +148,7 @@ class BlackJackController extends AbstractController
         $blackJack = $session->get('blackjack');
 
         foreach ($blackJack->getPlayers() as $playerId => $player) {
-            $bet = $request->request->get('bet_' . $playerId);
+            $bet = $request->request->get('bet_' . $player->getId());
 
             // Set the current bet
             $player->setCurrentBet($bet);
@@ -174,8 +179,8 @@ class BlackJackController extends AbstractController
 
         foreach ($formData as $key => $value) {
             if (str_starts_with($key, 'player_')) {
-                $playerIndex = substr($key, 7); // Get the player index
-                $player = $blackJack->getPlayers()[$playerIndex];
+                $playerId = substr($key, 7); // Get the player ID
+                $player = $blackJack->getPlayerById($playerId);
 
                 if ($value == 'hit') {
                     if ($blackJack->isBlackJack($player)) {
