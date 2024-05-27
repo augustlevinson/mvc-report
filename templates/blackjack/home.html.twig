@@ -8,11 +8,14 @@
 {{ include('flash.html.twig') }}
 
 <p class="intro-p">
-    This is <strong>BlackJack</strong>, a classic card game played between players and the house. Select the number of players and write their names.
+    This is <strong>BlackJack</strong>, a classic card game played between players and the house. Each player will start with a balance of $1000. The game will continue until all players run out of money. Select your desired number of players/hands and name them if you want to.
+</p>
+<p class="intro-p">
+    Select your desired number of players/hands and name them if you want to.
 </p>
 
 <form class="init-form" method="POST" action="{{ path('blackjack_init') }}">
-    <select class="input" id="numPlayers">
+    <select class="input" id="numPlayers" required>
         <option value="">Select number of players</option>
         <option value="1">1</option>
         <option value="2">2</option>

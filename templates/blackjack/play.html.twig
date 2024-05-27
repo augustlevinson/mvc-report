@@ -9,6 +9,7 @@
 
 <div class="table-wrapper">
 <div class="dealer-section">
+{% if blackJack.players|length != 0 %}
     <div class="dealer-box">
         <h3>Dealer</h3>
         <div class="player-cards">
@@ -21,39 +22,53 @@
                 {% if dealerScore|length == 2 %}
                     {{ dealerScore[0] }} or {{ dealerScore[1] }}
                 {% else %}
-                    {{ dealerScore[0] }}
+                    {% if dealerScore[0] == 0 %}
+                        {{''}}
+                    {% else %}
+                        {{ dealerScore[0] }}
+                    {% endif %}
                 {% endif %}
             </p>
     </div>
 </div>
-
-<form action="{{ path('first_bets') }}" method="post">
-<div class="players-section">
-    {% for player in blackJack.getPlayers() %}
-        <div class="player-box">
-            <div class="player-details">
-                <h3>{{ player.getName()|default('') }}</h3>
-                <p>${{ player.getBalance()|default('') }}</p>
-            </div>
-            
-            <div class="player-cards">
-                {% for card in player.getCards() %}
-                    {{- card.getGraphic()|default('') -}}
-                {% endfor %}
-            </div>
-            <p class="card-value">{{ player.getCardsValue()|default('') }}</p>
-
-                <div class="betting-box">
-                    <input type="number" name="bet_{{ loop.index0 }}" min="0" step="50" max="{{ player.getBalance() }}" value="250">
+<form action="{{ path('blackjack_bets') }}" method="post">
+    <div class="players-section">
+        {% for player in blackJack.getPlayers() %}
+            <div class="player-box">
+                <div class="player-details">
+                    <h3>{{ player.getName()|default('') }}</h3>
+                    <p>${{ player.getBalance()|default('') }}</p>
                 </div>
+                
+                <div class="player-cards">
+                    {% for card in player.getCards() %}
+                        {{- card.getGraphic()|default('') -}}
+                    {% endfor %}
+                </div>
+                <p class="card-value">{{ player.getCardsValue()|default('') }}</p>
 
-        </div>
-    {% endfor %}
-</div>
-    <div class="row-wrapper">
-        <input class="btn big" type="submit" value="Place Bets">
+                    <div class="betting-box">
+                        <input type="number" name="bet_{{ loop.index0 }}" min="0" step="25" max="{{ player.getBalance() }}" value="250">
+                    </div>
+
+            </div>
+        {% endfor %}
     </div>
-</form>
+        <div class="row-wrapper">
+            <input class="btn big" type="submit" value="Place Bets">
+        </div>
+    </form>
+{% else %}
+    <form action="{{ path('blackjack_home') }}" method="post">
+    <div class="players-section">
+        <h3>All players are bankrupt.</h3>
+    </div>
+        <div class="row-wrapper">
+            <input class="btn big" type="submit" value="Restart">
+        </div>
+    </form>
+</div>
+{% endif %}
 </div>
 
 {{ dump(session) }}

@@ -13,41 +13,25 @@
             <h3>Dealer</h3>
             <div class="player-cards">
             {% for card in blackJack.getDealer().getCards() %}
-                {{- card.getGraphic()|default('') -}}
+                {% if loop.index == 1 %}
+                    🂠
+                {% else %}
+                    {{- card.getGraphic()|default('') -}}
+                {% endif %}
             {% endfor %}
             </div>
-                {% set dealerScore = blackJack.calculatePlayerScore(blackJack.getDealer()) %}
-                <p class="card-value">
-                    {% if dealerScore|length == 2 %}
-                        {{ dealerScore[0] }} or {{ dealerScore[1] }}
-                    {% else %}
-                        {{ dealerScore[0] }}
-                    {% endif %}
-                </p>
         </div>
     </div>
 
     <div class="players-section">
-        <form class="hit-stand-form" action="{{ path('blackjack_new_round') }}" method="post">
+        <form class="hit-stand-form" action="{{ path('blackjack_hit_or_stand') }}" method="post">
         {% for player in blackJack.getPlayers() %}
             <div class="player-box">
                 <div class="player-details">
                     <h3>{{ player.getName()|default('') }}</h3>
-                    <p>
-                        ${{ player.getBalance()|default('') }}
-                        (
-                        {% set winnings = player.getRoundWinnings() %}
-                        {% if winnings > 0 %}
-                            +{{ winnings }}
-                        {% elseif winnings < 0 %}
-                            -{{ winnings|abs }}
-                        {% else %}
-                            ±0
-                        {% endif %}
-                        )
-                    </p>
+                    <p>${{ player.getBalance()|default('') }}</p>
                 </div>
-                
+
                 <div class="player-cards">
                     {% for card in player.getCards() %}
                         {{- card.getGraphic()|default('') -}}
@@ -67,19 +51,32 @@
                     </div>
                 </div>
 
-                {% if blackJack.isBust(player) %}
-                    <p class="status-p">Bust</p>
-                {% elseif blackJack.isBlackJack(player) %}
-                    <p class="status-p">BlackJack!</p>
+                {% if not player.getPlayerStanding() and not blackJack.isBlackJack(player) %}
+                        <div class="radio-inputs">
+                            <div class="radio">
+                                <input type="radio" id="hit_{{ loop.index0 }}" name="player_{{ loop.index0 }}" value="hit">
+                                <label class="name" for="hit_{{ loop.index0 }}">Hit</label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" id="stand_{{ loop.index0 }}" name="player_{{ loop.index0 }}" value="stand">
+                                <label class="name" for="stand_{{ loop.index0 }}">Stand</label>
+                            </div>
+                        </div>
                 {% else %}
-                    <p class="status-p">Standing</p>
+                    {% if blackJack.isBust(player) %}
+                        <p class="status-p">Bust</p>
+                    {% elseif blackJack.isBlackJack(player) %}
+                        <p class="status-p">BlackJack!</p>
+                    {% else %}
+                        <p class="status-p">Standing</p>
+                    {% endif %}
                 {% endif %}
 
                     </div>
                 {% endfor %}
                     </div>
                     <div class="row-wrapper">
-                        <input class="btn big" type="submit" value="New Round">
+                        <input class="btn big" type="submit" value="Deal Cards">
                     </div>
                 </form>
 </div>

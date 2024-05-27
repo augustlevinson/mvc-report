@@ -78,8 +78,12 @@ class BlackJackController extends AbstractController
             "blackJack" => $blackJack,
             'session' => $session->all()
         ];
-        // Render the template with the data
-        return $this->render('blackjack/dealer.html.twig', $data);
+
+        if ($blackJack->areAllPlayersStanding()) {
+            return $this->redirectToRoute('blackjack_round_over');
+        } else {
+            return $this->render('blackjack/dealer.html.twig', $data);
+        }
     }
 
     #[Route("/proj/round-finished", name: "blackjack_round_over")]
@@ -89,6 +93,7 @@ class BlackJackController extends AbstractController
         $blackJack = $session->get("blackjack");
 
         $blackJack->dealerPlays();
+        $blackJack->determineWinnings();
 
         $data = [
             "blackJack" => $blackJack,
@@ -96,6 +101,22 @@ class BlackJackController extends AbstractController
         ];
         // Render the template with the data
         return $this->render('blackjack/finish.html.twig', $data);
+    }
+
+    #[Route("/proj/new-round", name: "blackjack_new_round")]
+    public function newRound(SessionInterface $session): Response
+    {
+        // Get "BlackJack" object.
+        $blackJack = $session->get("blackjack");
+
+        $blackJack->newRoundReset();
+
+        $data = [
+            "blackJack" => $blackJack,
+            'session' => $session->all()
+        ];
+        // Render the template with the data
+        return $this->redirectToRoute("blackjack_play");
     }
 
     #[Route("/proj/hit-stand", name: "blackjack_hit_stand", methods: ['GET'])]
@@ -112,10 +133,10 @@ class BlackJackController extends AbstractController
             'session' => $session->all()
         ];
         // Render the template with the data
-        return $this->render('blackjack/hit-stand.html.twig', $data);
+        return $this->render('blackjack/hit-stand-first.html.twig', $data);
     }
 
-    #[Route("/bet", name: "first_bets", methods: ["POST"])]
+    #[Route("/bet", name: "blackjack_bets", methods: ["POST"])]
     public function setCurrentBets(Request $request, SessionInterface $session)
     {
         // Get the "blackjack" object from the session
@@ -157,12 +178,23 @@ class BlackJackController extends AbstractController
                 $player = $blackJack->getPlayers()[$playerIndex];
 
                 if ($value == 'hit') {
-                    // Call the hit method on the player
-                    $blackJack->playerHits($player);
+                    if ($blackJack->isBlackJack($player)) {
+                        $blackJack->setBlackJack($player);
+                    } else {
+                        $blackJack->playerHits($player);
+                    }
                 } else {
                     // Call the stand method on the player
                     $blackJack->playerStands($player);
                 }
+            }
+        }
+
+        foreach ($blackJack->getPlayers() as $player) {
+            if ($blackJack->isBlackJack($player)) {
+                $blackJack->setBlackJack($player);
+            } elseif ($blackJack->isBust($player)) {
+                $blackJack->setBust($player);
             }
         }
 

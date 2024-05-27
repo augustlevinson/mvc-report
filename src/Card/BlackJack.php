@@ -40,6 +40,22 @@ class BlackJack
 
     }
 
+    public function newRoundReset()
+    {
+        foreach ($this->players as $player) {
+            $player->resetHand();
+            $player->setCurrentBet(0);
+            $player->setRoundWinnings(0);
+            $player->setPlayerStanding(false);
+            $this->unsetBust($player);
+            $this->unsetBlackJack($player);
+        }
+
+        $this->removeBankruptPlayers();
+
+        $this->dealer->resetHand();
+    }
+
     /**
      * Initializes a new round of the game and deals two cards each.
      */
@@ -102,7 +118,7 @@ class BlackJack
                 return false;
             }
         }
-    
+
         $this->setBust($player);
         return true;
     }
@@ -201,19 +217,77 @@ class BlackJack
     {
         $scoreArray = $this->calculatePlayerScore($this->dealer);
 
-        while (!in_array(21, $scoreArray) && max($scoreArray) < 17) {
+        while (!in_array(21, $scoreArray) && max($scoreArray) < 17 && min($scoreArray) < 17) {
             $this->dealer->addCard($this->deck->drawCard());
             $scoreArray = $this->calculatePlayerScore($this->dealer);
         }
     }
 
     /**
-     * Determines the winner of the game based on the 
-     * scores of the player's hands and the dealer's hand.
+     * Remove players who have run out of money.
      */
-    public function determineWinner()
+    public function removeBankruptPlayers()
     {
-        // TODO: Implement determineWinner() method.
+        foreach ($this->players as $key => $player) {
+            if ($player->getBalance() <= 0) {
+                unset($this->players[$key]);
+            }
+        }
+    }
+
+    /**
+     * Determines what players, if any, get a pay-out and how much.
+     */
+    public function determineWinnings()
+    {
+        foreach ($this->players as $player) {
+            $playerScore = $player->getCurrentScore();
+            $dealerScore = $this->dealer->getCurrentScore();
+
+            if (!$this->isBust($player)) {
+                // Case: Player has blackjack
+                if ($this->isBlackJack($player)) {
+                    if ($this->isBlackJack($this->dealer)) {
+                        // Player gets back their bet
+                        $player->setBalance($player->getBalance() + $player->getCurrentBet());
+                        $player->setRoundWinnings($player->getCurrentBet());
+                    } else {
+                        // Player gets back 2.5 times the bet
+                        $player->setBalance($player->getBalance() + $player->getCurrentBet() * 2.5);
+                        $player->setRoundWinnings($player->getCurrentBet() * 2.5);
+                    }
+                } else {
+                    if (max($playerScore) > 21) {
+                        $playerScoreUsed = min($playerScore);
+                    } else {
+                        $playerScoreUsed = max($playerScore);
+                    }
+                    if (max($dealerScore) > 21) {
+                        $dealerScoreUsed = min($dealerScore);
+                    } else {
+                        $dealerScoreUsed = max($dealerScore);
+                    }
+
+                    if ($this->isBust($this->dealer)) {
+                        // Player gets back 2 times the bet
+                        $player->setBalance($player->getBalance() + $player->getCurrentBet() * 2);
+                        $player->setRoundWinnings($player->getCurrentBet() * 2);
+                    } else {
+                        // Case: Player has a higher score than the dealer
+                        if ($playerScoreUsed > $dealerScoreUsed) {
+                            // Player gets back 2 times the bet
+                            $player->setBalance($player->getBalance() + $player->getCurrentBet() * 2);
+                            $player->setRoundWinnings($player->getCurrentBet() * 2);
+                        } elseif ($playerScoreUsed == $dealerScoreUsed) {
+                            // Player gets back their bet
+                            $player->setBalance($player->getBalance() + $player->getCurrentBet());
+                            $player->setRoundWinnings($player->getCurrentBet());
+                        }
+                    }
+                }
+            }
+            $player->setRoundWinnings($player->getRoundWinnings() - $player->getCurrentBet());
+        }
     }
 
     /**

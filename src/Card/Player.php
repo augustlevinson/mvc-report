@@ -13,6 +13,9 @@ class Player
     /** @var <int> */
     protected $currentBet = 0;
 
+    /** @var <int> */
+    protected $roundWinnings = 0;
+
     /** @var Array<int> */
     protected $currentScore = [0];
 
@@ -79,20 +82,27 @@ class Player
     }
 
     /**
+     * Getter function for the player's winnings/losses in the round.
+     */
+    public function getRoundWinnings()
+    {
+        return $this->roundWinnings;
+    }
+
+    /**
+     * Setter function for the player's winnings/losses in the round.
+     */
+    public function setRoundWinnings($amount)
+    {
+        $this->roundWinnings = $amount;
+    }
+
+    /**
      * Getter function for the player's current score.
      */
     public function getCurrentScore()
     {
         return $this->currentScore;
-    }
-
-    /**
-     * Returns the player's current score
-     * as a string.
-     */
-    public function scoreToString()
-    {
-        return strval($this->currentScore[0]);
     }
 
     /**
@@ -157,6 +167,7 @@ class Player
     public function setBust(bool $bust)
     {
         $this->isBust = $bust;
+        $this->isStanding = $bust;
     }
 
     /**
@@ -181,5 +192,13 @@ class Player
     public function getCardsValue()
     {
         return $this->cardHand->getValues();
+    }
+
+    /**
+     * Resets the hand to an empty one.
+     */
+    public function resetHand()
+    {
+        $this->cardHand = new CardHand();
     }
 }

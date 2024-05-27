@@ -12,9 +12,9 @@
         <div class="dealer-box">
             <h3>Dealer</h3>
             <div class="player-cards">
-                {% for card in blackJack.getDealer().getCards() %}
-                    {{- card.getGraphic()|default('') -}}
-                {% endfor %}
+            {% for card in blackJack.getDealer().getCards() %}
+                {{- card.getGraphic()|default('') -}}
+            {% endfor %}
             </div>
                 {% set dealerScore = blackJack.calculatePlayerScore(blackJack.getDealer()) %}
                 <p class="card-value">
