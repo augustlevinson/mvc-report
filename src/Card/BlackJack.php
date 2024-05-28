@@ -18,32 +18,31 @@ class BlackJack
         '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10,
         'Jack' => 10, 'Queen' => 10, 'King' => 10, 'Ace' => 11
     ];
-
-    /** @var array<Player> */
-    protected $standingPlayers = [];
-
     /** @var array<string,array<int>> */
-    protected $scoreBoard = [];
+protected $scoreBoard = [];
 
     /**
      * Constructs a new BlackJack instance.
+     * @param array<string> $playersArray The array of player names.
      */
     public function __construct($playersArray)
     {
         foreach ($playersArray as $player) {
 
             $this->players[] = new Player($player);
-            $this->deck = new DeckOfCards;
+            $this->deck = new DeckOfCards();
         }
 
-        $this->dealer = new Dealer;
+        $this->dealer = new Dealer();
 
     }
 
     /**
      * Get a player by their id.
+     * @param int $id The id of the player.
      */
-    public function getPlayerById($id) {
+    public function getPlayerById($id): ?Player
+    {
         foreach ($this->players as $player) {
             if ($player->getId() == $id) {
                 return $player;
@@ -52,7 +51,7 @@ class BlackJack
         return null;
     }
 
-    public function newRoundReset()
+    public function newRoundReset(): void
     {
         foreach ($this->players as $player) {
             $player->resetHand();
@@ -71,13 +70,13 @@ class BlackJack
     /**
      * Initializes a new round of the game and deals two cards each.
      */
-    public function initRound()
+    public function initRound(): void
     {
         if ($this->deck->getRemainingCards() < 15) {
-            $this->deck = new DeckOfCards;
+            $this->deck = new DeckOfCards();
         }
 
-        for ($i=0; $i<2; $i++) {
+        for ($i = 0; $i < 2; $i++) {
             foreach ($this->players as $player) {
                 $player->addCard($this->deck->drawCard());
             }
@@ -89,10 +88,10 @@ class BlackJack
     /**
      * Places bets and deals one card each.
      */
-    public function dealRound()
+    public function dealRound(): void
     {
         if ($this->deck->getRemainingCards() < 15) {
-            $this->deck = new DeckOfCards;
+            $this->deck = new DeckOfCards();
         }
 
         foreach ($this->players as $player) {
@@ -104,22 +103,26 @@ class BlackJack
 
     /**
      * Getter function for the player array.
+     * @return array<Player> The array of player names.
      */
-    public function getPlayers()
+    public function getPlayers(): array
     {
         return $this->players;
     }
 
     /**
      * Getter function for the player array.
+     * @return Dealer The dealer object.
      */
-    public function getDealer()
+    public function getDealer(): Dealer
     {
         return $this->dealer;
     }
 
     /**
      * Checks if a hand is bust (score > 21).
+     * @param Player $player The player to check.
+     * @return bool True if the player is bust, false otherwise.
      */
     public function isBust(Player $player)
     {
@@ -137,22 +140,26 @@ class BlackJack
 
     /**
      * Marks a player as bust.
+     * @param Player $player The player to mark as bust.
      */
-    public function setBust(Player $player)
+    public function setBust(Player $player): void
     {
         $player->setBust(true);
     }
 
     /**
      * Marks a player as not bust.
+     * @param Player $player The player to mark as not bust.
      */
-    public function unsetBust(Player $player)
+    public function unsetBust(Player $player): void
     {
         $player->setBust(false);
     }
 
     /**
      * Checks if player hand is blackjack (score == 21).
+     * @param Player $player The player to check.
+     * @return bool True if the player has blackjack, false otherwise.
      */
     public function isBlackJack(Player $player)
     {
@@ -163,16 +170,18 @@ class BlackJack
 
     /**
      * Marks a player as having blackjack.
+     * @param Player $player The player to mark as having blackjack.
      */
-    public function setBlackJack(Player $player)
+    public function setBlackJack(Player $player): void
     {
         $player->setBlackJack(true);
     }
 
     /**
      * Marks a player as not having blackjack.
+     * @param Player $player The player to mark as not having blackjack.
      */
-    public function unsetBlackJack(Player $player)
+    public function unsetBlackJack(Player $player): void
     {
         $player->setBlackJack(false);
     }
@@ -180,23 +189,25 @@ class BlackJack
     /**
      * Draws a card for the dealer.
      */
-    public function dealerDrawsCard()
+    public function dealerDrawsCard(): void
     {
         // TODO: Implement dealerDrawsCard() method.
     }
 
     /**
      * Marks a specific player's hand as standing (no more cards will be drawn).
+     * @param Player $player The player to mark as standing.
      */
-    public function playerStands(Player $player)
+    public function playerStands(Player $player): void
     {
         $player->setPlayerStanding(true);
     }
 
     /**
      * Draws a card for the player and marks them as standing if bust or blackjack.
+     * @param Player $player The player that hits.
      */
-    public function playerHits(Player $player)
+    public function playerHits(Player $player): void
     {
         $player->addCard($this->deck->drawCard());
 
@@ -211,8 +222,9 @@ class BlackJack
 
     /**
      * Checks if all players are standing.
+     * @return bool True if all players are standing, false otherwise.
      */
-    public function areAllPlayersStanding()
+    public function areAllPlayersStanding(): bool
     {
         foreach ($this->players as $player) {
             if (!$player->getPlayerStanding()) {
@@ -225,7 +237,7 @@ class BlackJack
     /**
      * Plays the dealer's turn (draws cards until score is 17 or higher).
      */
-    public function dealerPlays()
+    public function dealerPlays(): void
     {
         $scoreArray = $this->calculatePlayerScore($this->dealer);
 
@@ -238,7 +250,7 @@ class BlackJack
     /**
      * Remove players who have run out of money.
      */
-    public function removeBankruptPlayers()
+    public function removeBankruptPlayers(): void
     {
         foreach ($this->players as $key => $player) {
             if ($player->getBalance() <= 0) {
@@ -250,7 +262,7 @@ class BlackJack
     /**
      * Determines what players, if any, get a pay-out and how much.
      */
-    public function determineWinnings()
+    public function determineWinnings(): void
     {
         foreach ($this->players as $player) {
             $playerScore = $player->getCurrentScore();
@@ -304,6 +316,8 @@ class BlackJack
 
     /**
      * Calculates and the score for a player.
+     * 
+     * @param array<string> $values The values of the cards in the player's hand.
      * @return array<int> The updated score of the player.
      */
     public function score(array $values): array
@@ -320,6 +334,7 @@ class BlackJack
     /**
      * Calculates and the score for a player, considering the Ace card as 1 or 11.
      *
+     * @param array<string> $values The values of the cards in the player's hand.
      * @return array<int> The updated score of the player.
      */
     public function scoreWithAce(array $values): array
@@ -342,8 +357,9 @@ class BlackJack
 
     /**
      * Sets and returns an array of potential scores of a player's hand.
+     * @return array<int> The updated score of the player.
      */
-    public function calculatePlayerScore(Player $player)
+    public function calculatePlayerScore(Player $player): array
     {
         $values = $player->getCardsValue();
 

@@ -33,7 +33,7 @@ class BlackJackController extends AbstractController
     {
         // Get the request data
         $requestData = $request->request->all();
-    
+
         $players = [];
 
         foreach ($requestData as $key => $playerName) {

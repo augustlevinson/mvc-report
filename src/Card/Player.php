@@ -4,31 +4,31 @@ namespace App\Card;
 
 class Player
 {
-    /** @var <string> */
+    /** @var string */
     protected $name = "";
 
-    /** @var <int> */
+    /** @var int */
     protected $balance = 0;
 
-    /** @var <int> */
+    /** @var int */
     protected $id;
 
-    /** @var <int> */
+    /** @var int */
     protected $currentBet = 0;
 
-    /** @var <int> */
+    /** @var int */
     protected $roundWinnings = 0;
 
     /** @var Array<int> */
     protected $currentScore = [0];
 
-    /** @var <bool> */
+    /** @var bool */
     protected $isStanding = false;
 
-    /** @var <bool> */
+    /** @var bool */
     protected $hasBlackJack = false;
 
-    /** @var <bool> */
+    /** @var bool */
     protected $isBust = false;
 
     /** @var CardHand */
@@ -36,8 +36,10 @@ class Player
 
     /**
      * Constructs a new Player instance.
+     * @param string $nameInput
+     * @param int $balanceInput
      */
-    public function __construct($nameInput, $balanceInput=2500)
+    public function __construct($nameInput, $balanceInput = 2500)
     {
         $this->name = $nameInput;
         $this->id = rand(1, 1000);
