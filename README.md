@@ -6,6 +6,7 @@ Report
 
 
 Report site for the <a href="https://dbwebb.se/kurser/mvc-v2/">mvc course</a> at Blekinge Institute of Technology.
+
 It is currently running live on the <a href="https://www.student.bth.se/~aule23/dbwebb-kurser/mvc/me/report/public/">university server</a>
 
 Clone the Repository
@@ -29,6 +30,7 @@ Scrutinizer badges
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/?branch=main)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/?branch=main)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/badges/build.png?b=main)](https://scrutinizer-ci.com/g/augustlevinson/mvc-report/?branch=main)
+Unit tests have been implemented to ensure the logic of the different games and other pages is functioning as expected. The project also demonstrates the use of MVC architecture, promoting a well-structured and maintainable codebase - although the controllers lower the test coverage score.
 
 
 Project
