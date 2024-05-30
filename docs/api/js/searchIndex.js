@@ -16,6 +16,11 @@ Search.appendIndex(
             "summary": "Get\u0020a\u0020player\u0020by\u0020their\u0020id.",
             "url": "classes/App-Card-BlackJack.html#method_getPlayerById"
         },                {
+            "fqsen": "\\App\\Card\\BlackJack\u003A\u003AgetDeck\u0028\u0029",
+            "name": "getDeck",
+            "summary": "Get\u0020the\u0020deck\u0020of\u0020cards.",
+            "url": "classes/App-Card-BlackJack.html#method_getDeck"
+        },                {
             "fqsen": "\\App\\Card\\BlackJack\u003A\u003AnewRoundReset\u0028\u0029",
             "name": "newRoundReset",
             "summary": "",
@@ -70,11 +75,6 @@ Search.appendIndex(
             "name": "unsetBlackJack",
             "summary": "Marks\u0020a\u0020player\u0020as\u0020not\u0020having\u0020blackjack.",
             "url": "classes/App-Card-BlackJack.html#method_unsetBlackJack"
-        },                {
-            "fqsen": "\\App\\Card\\BlackJack\u003A\u003AdealerDrawsCard\u0028\u0029",
-            "name": "dealerDrawsCard",
-            "summary": "Draws\u0020a\u0020card\u0020for\u0020the\u0020dealer.",
-            "url": "classes/App-Card-BlackJack.html#method_dealerDrawsCard"
         },                {
             "fqsen": "\\App\\Card\\BlackJack\u003A\u003AplayerStands\u0028\u0029",
             "name": "playerStands",
@@ -418,7 +418,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Card\\Player\u003A\u003AsetCurrentScore\u0028\u0029",
             "name": "setCurrentScore",
-            "summary": "Setter\u0020function\u0020for\u0020the\u0020player\u0027s\ncurrent\u0020bet.",
+            "summary": "Setter\u0020function\u0020for\u0020the\u0020player\u0027s\ncurrent\u0020score.",
             "url": "classes/App-Card-Player.html#method_setCurrentScore"
         },                {
             "fqsen": "\\App\\Card\\Player\u003A\u003AsetPlayerStanding\u0028\u0029",
