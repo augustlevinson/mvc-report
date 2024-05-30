@@ -6,7 +6,7 @@ use App\Card\Card;
 
 class CardHand
 {
-    /** @var Card[] */
+    /** @var Card[]|null[] */
     protected array $cards = [];
 
     public function __construct()
@@ -14,13 +14,13 @@ class CardHand
         // Constructor intentionally left empty
     }
 
-    public function addCard(Card $card): void
+    public function addCard(Card|null $card): void
     {
         $this->cards[] = $card;
     }
 
     /**
-     * @return Card[]
+     * @return Card[]|null[]
      */
     public function getCards(): array
     {

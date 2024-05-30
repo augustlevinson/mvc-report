@@ -142,7 +142,7 @@ class BlackJackController extends AbstractController
     }
 
     #[Route("/bet", name: "blackjack_bets", methods: ["POST"])]
-    public function setCurrentBets(Request $request, SessionInterface $session)
+    public function setCurrentBets(Request $request, SessionInterface $session): Response
     {
         // Get the "blackjack" object from the session
         $blackJack = $session->get('blackjack');

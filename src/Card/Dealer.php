@@ -15,7 +15,7 @@ class Dealer extends Player
     /**
      * Override the getName method to return "Dealer".
      */
-    public function getName()
+    public function getName(): string
     {
         return "Dealer";
     }
@@ -23,7 +23,7 @@ class Dealer extends Player
     /**
      * Override the getBalance method to return null.
      */
-    public function getBalance()
+    public function getBalance(): int
     {
         return null;
     }
@@ -31,7 +31,7 @@ class Dealer extends Player
     /**
      * Override the setBalance method to do nothing.
      */
-    public function setBalance($newBalance)
+    public function setBalance($newBalance): void
     {
         // Do nothing
     }

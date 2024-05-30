@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase
 {
-    public function testProductEntity()
+    public function testProductEntity(): void
     {
         $product = new Product();
 

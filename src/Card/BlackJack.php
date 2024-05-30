@@ -4,7 +4,7 @@ namespace App\Card;
 
 class BlackJack
 {
-    /** @var array<string> */
+    /** @var array<Player> */
     protected $players;
 
     /** @var DeckOfCards */
@@ -49,6 +49,15 @@ protected $scoreBoard = [];
             }
         }
         return null;
+    }
+
+    /**
+     * Get the deck of cards.
+     * @return DeckOfCards The deck of cards.
+     */
+    public function getDeck(): DeckOfCards
+    {
+        return $this->deck;
     }
 
     public function newRoundReset(): void
@@ -187,14 +196,6 @@ protected $scoreBoard = [];
     }
 
     /**
-     * Draws a card for the dealer.
-     */
-    public function dealerDrawsCard(): void
-    {
-        // TODO: Implement dealerDrawsCard() method.
-    }
-
-    /**
      * Marks a specific player's hand as standing (no more cards will be drawn).
      * @param Player $player The player to mark as standing.
      */
@@ -317,8 +318,8 @@ protected $scoreBoard = [];
     /**
      * Calculates and the score for a player.
      * 
-     * @param array<string> $values The values of the cards in the player's hand.
-     * @return array<int> The updated score of the player.
+     * @param array<int|string> $values The values of the cards in the player's hand.
+     * @return array<int|string> The updated score of the player.
      */
     public function score(array $values): array
     {
@@ -334,7 +335,7 @@ protected $scoreBoard = [];
     /**
      * Calculates and the score for a player, considering the Ace card as 1 or 11.
      *
-     * @param array<string> $values The values of the cards in the player's hand.
+     * @param array<int|string> $values The values of the cards in the player's hand.
      * @return array<int> The updated score of the player.
      */
     public function scoreWithAce(array $values): array
@@ -357,7 +358,7 @@ protected $scoreBoard = [];
 
     /**
      * Sets and returns an array of potential scores of a player's hand.
-     * @return array<int> The updated score of the player.
+     * @return array<int|string> The updated score of the player.
      */
     public function calculatePlayerScore(Player $player): array
     {

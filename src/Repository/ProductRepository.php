@@ -36,6 +36,7 @@ class ProductRepository extends ServiceEntityRepository
      * Find all producs having a value above the specified one with SQL.
      *
      * @return array[] Returns an array of arrays (i.e. a raw data set)
+     * @param int|string|bool $value
      */
     public function findByMinimumValue2($value): array
     {

@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class BookTest extends TestCase
 {
-    public function testBookEntity()
+    public function testBookEntity(): void
     {
         $book = new Book();
 
