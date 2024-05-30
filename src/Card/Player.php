@@ -66,7 +66,7 @@ class Player
     /**
      * Getter function for the balance of the player.
      */
-    public function getBalance(): int|float
+    public function getBalance(): int|float|null
     {
         return $this->balance;
     }

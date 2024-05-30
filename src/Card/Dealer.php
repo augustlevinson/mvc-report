@@ -23,7 +23,7 @@ class Dealer extends Player
     /**
      * Override the getBalance method to return null.
      */
-    public function getBalance(): int
+    public function getBalance(): null
     {
         return null;
     }

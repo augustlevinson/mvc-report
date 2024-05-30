@@ -70,7 +70,7 @@ class PlayerTest extends TestCase
         $player = new Player("Test");
         $player->setCurrentScore([21]);
 
-        $this->assertEquals(21, $player->getCurrentScore());
+        $this->assertEquals([21], $player->getCurrentScore());
     }
 
     public function testGetSetPlayerStanding(): void
