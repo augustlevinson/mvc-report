@@ -37,4 +37,8 @@ Project
 ===
 
 As the finishing project of the course I made a simple implementation of a BlackJack card game. The project is built with object oriented PHP, Symfony, and Twig.
+
+This is a school project for the course mvc at Blekinge Institute of Technology. The project is a simple implementation of a BlackJack card game. The project is built with object oriented PHP, Symfony, and Twig.
+
+Unit tests have been implemented to ensure the game's logic is functioning as expected. The project also demonstrates the use of MVC architecture, promoting a well-structured and maintainable codebase.
 See it live <a href="https://www.student.bth.se/~aule23/dbwebb-kurser/mvc/me/report/public/proj">here</a>.
